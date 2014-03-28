@@ -43,13 +43,7 @@ static UIColor *MRGUIColorWithHexString(NSString *hexString) {
 
 - (instancetype)initWithClassName:(NSString *)className {
     if (self = [super init]) {
-        NSString *path = [self pathForClassName:className];
-        NSData *data = [NSData dataWithContentsOfFile:path];
-        NSError *error = nil;
-        _entries = [self dictionaryWithData:data error:&error];
-        if (error) {
-            @throw [NSException exceptionWithName:MRGArchitectParseErrorException reason:[error description] userInfo:[error userInfo]];
-        }
+        _entries = [self loadEntriesWithClassName:className];
     }
     
     return self;
@@ -187,15 +181,38 @@ static UIColor *MRGUIColorWithHexString(NSString *hexString) {
 
 #pragma mark - Private Implementation
 
-- (NSString *)pathForClassName:(NSString *)className {
-    NSString *path = nil;
-    if (568.0f == CGRectGetHeight([UIScreen mainScreen].bounds)) {
-        path = [[NSBundle bundleForClass:NSClassFromString(className)] pathForResource:[NSString stringWithFormat:@"%@-%@", className, @"568h"] ofType:@"json"];
-    } else {
-        path = [[NSBundle bundleForClass:NSClassFromString(className)] pathForResource:className ofType:@"json"];
+- (NSDictionary *)loadEntriesWithClassName:(NSString *)className {
+    NSMutableArray *paths = [[NSMutableArray alloc] init];
+    
+    NSString *path = [[[NSBundle bundleForClass:NSClassFromString(className)] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.json", className]];
+    if (path) [paths addObject:path];
+    
+    if (UIUserInterfaceIdiomPhone == UI_USER_INTERFACE_IDIOM()) {
+        NSString *path = nil;
+        if (568.0f == CGRectGetHeight([UIScreen mainScreen].bounds)) {
+            path = [[[NSBundle bundleForClass:NSClassFromString(className)] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-568h.json", className]];
+        } else {
+            path = [[[NSBundle bundleForClass:NSClassFromString(className)] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@~iphone.json", className]];
+        }
+        if (path) [paths addObject:path];
+    } else if (UIUserInterfaceIdiomPad == UI_USER_INTERFACE_IDIOM()) {
+        NSString *path = [[[NSBundle bundleForClass:NSClassFromString(className)] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@~ipad.json", className]];
+        if (path) [paths addObject:path];
     }
     
-    return path;
+    NSMutableDictionary *entries = [[NSMutableDictionary alloc] init];
+    for (NSString *path in paths) {
+        NSData *data = [NSData dataWithContentsOfFile:path];
+        NSError *error = nil;
+        NSDictionary *dictionary = [self dictionaryWithData:data error:&error];
+        if (error) {
+            @throw [NSException exceptionWithName:MRGArchitectParseErrorException reason:[error description] userInfo:[error userInfo]];
+        } else {
+            [entries addEntriesFromDictionary:dictionary];
+        }
+    }
+    
+    return [NSDictionary dictionaryWithDictionary:entries];
 }
 
 - (NSDictionary *)dictionaryWithData:(NSData *)data error:(NSError **)error {

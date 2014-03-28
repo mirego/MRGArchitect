@@ -224,4 +224,9 @@ static const CGFloat accuracy = 0.01f;
     }
 }
 
+- (void)testOverridenKey {
+    NSInteger value = [self.architect integerForKey:@"testOverridenKey"];
+    XCTAssertEqual(54, value, @"Expecting the integer value '54' for the key: testOverridenKey");
+}
+
 @end

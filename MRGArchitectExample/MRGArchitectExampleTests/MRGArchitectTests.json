@@ -31,4 +31,5 @@
     "testStringSizeForKey": "{20.0, 10.0}",
     "testNotQuiteSize": "notQuiteSize",
     "testNonSizeKey": 42,
+    "testOverridenKey": 42
 }

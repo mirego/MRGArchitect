@@ -25,6 +25,7 @@
 		095CF59818E5ADA4004BAD57 /* MRGArchitectTests.json in Resources */ = {isa = PBXBuildFile; fileRef = 095CF59618E5ADA4004BAD57 /* MRGArchitectTests.json */; };
 		095CF59A18E5C31E004BAD57 /* MRGArchitectTests_Invalid.json in Resources */ = {isa = PBXBuildFile; fileRef = 095CF59918E5C31E004BAD57 /* MRGArchitectTests_Invalid.json */; };
 		095CF59B18E5C31E004BAD57 /* MRGArchitectTests_Invalid.json in Resources */ = {isa = PBXBuildFile; fileRef = 095CF59918E5C31E004BAD57 /* MRGArchitectTests_Invalid.json */; };
+		0993CDA118E5EEFA00585F02 /* MRGArchitectTests~iphone.json in Resources */ = {isa = PBXBuildFile; fileRef = 0993CDA018E5EEFA00585F02 /* MRGArchitectTests~iphone.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		095CF59418E5AD90004BAD57 /* MRGArchitectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRGArchitectTests.m; sourceTree = "<group>"; };
 		095CF59618E5ADA4004BAD57 /* MRGArchitectTests.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MRGArchitectTests.json; sourceTree = "<group>"; };
 		095CF59918E5C31E004BAD57 /* MRGArchitectTests_Invalid.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MRGArchitectTests_Invalid.json; sourceTree = "<group>"; };
+		0993CDA018E5EEFA00585F02 /* MRGArchitectTests~iphone.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "MRGArchitectTests~iphone.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 				095CF59618E5ADA4004BAD57 /* MRGArchitectTests.json */,
 				095CF59418E5AD90004BAD57 /* MRGArchitectTests.m */,
 				095CF59918E5C31E004BAD57 /* MRGArchitectTests_Invalid.json */,
+				0993CDA018E5EEFA00585F02 /* MRGArchitectTests~iphone.json */,
 				095CF58018E5AD03004BAD57 /* Supporting Files */,
 			);
 			path = MRGArchitectExampleTests;
@@ -256,6 +259,7 @@
 			files = (
 				095CF59818E5ADA4004BAD57 /* MRGArchitectTests.json in Resources */,
 				095CF59B18E5C31E004BAD57 /* MRGArchitectTests_Invalid.json in Resources */,
+				0993CDA118E5EEFA00585F02 /* MRGArchitectTests~iphone.json in Resources */,
 				095CF58418E5AD03004BAD57 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -467,6 +471,7 @@
 				095CF58B18E5AD03004BAD57 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		095CF58C18E5AD03004BAD57 /* Build configuration list for PBXNativeTarget "MRGArchitectExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -475,6 +480,7 @@
 				095CF58E18E5AD03004BAD57 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
