@@ -27,6 +27,7 @@
 
 #import <Foundation/Foundation.h>
 
+static NSString * const MRGArchitectParseErrorException = @"MRGArchitectParseErrorException";
 static NSString * const MRGArchitectKeyNotFoundException = @"MRGArchitectKeyNotFoundException";
 static NSString * const MRGArchitectUnexpectedValueTypeException = @"MRGArchitectUnexpectedValueTypeException";
 

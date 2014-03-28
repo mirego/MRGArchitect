@@ -47,6 +47,9 @@ static UIColor *MRGUIColorWithHexString(NSString *hexString) {
         NSData *data = [NSData dataWithContentsOfFile:path];
         NSError *error = nil;
         _entries = [self dictionaryWithData:data error:&error];
+        if (error) {
+            @throw [NSException exceptionWithName:MRGArchitectParseErrorException reason:[error description] userInfo:[error userInfo]];
+        }
     }
     
     return self;

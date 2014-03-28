@@ -46,6 +46,17 @@ static const CGFloat accuracy = 0.01f;
     [super tearDown];
 }
 
+- (void)testParseError {
+    MRGArchitect *architect = nil;
+    @try {
+        architect = [[MRGArchitect alloc] initWithClassName:@"MRGArchitectTests_Invalid"];
+    }
+    @catch (NSException *exception) {
+        XCTAssertNotNil(exception, @"Expecting an exception to be thrown for key: testParseError");
+        XCTAssertEqual(MRGArchitectParseErrorException, exception.name, @"Expecting the exception thrown to be named: MRGArchitectParseErrorException");
+    }
+}
+
 - (void)testBoolForKey {
     BOOL value = [self.architect boolForKey:@"testBoolForKey"];
     XCTAssertTrue(value, @"Expecting a 'true' value for key: testBoolForKey");

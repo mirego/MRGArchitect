@@ -23,6 +23,8 @@
 		095CF59518E5AD90004BAD57 /* MRGArchitectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 095CF59418E5AD90004BAD57 /* MRGArchitectTests.m */; };
 		095CF59718E5ADA4004BAD57 /* MRGArchitectTests.json in Resources */ = {isa = PBXBuildFile; fileRef = 095CF59618E5ADA4004BAD57 /* MRGArchitectTests.json */; };
 		095CF59818E5ADA4004BAD57 /* MRGArchitectTests.json in Resources */ = {isa = PBXBuildFile; fileRef = 095CF59618E5ADA4004BAD57 /* MRGArchitectTests.json */; };
+		095CF59A18E5C31E004BAD57 /* MRGArchitectTests_Invalid.json in Resources */ = {isa = PBXBuildFile; fileRef = 095CF59918E5C31E004BAD57 /* MRGArchitectTests_Invalid.json */; };
+		095CF59B18E5C31E004BAD57 /* MRGArchitectTests_Invalid.json in Resources */ = {isa = PBXBuildFile; fileRef = 095CF59918E5C31E004BAD57 /* MRGArchitectTests_Invalid.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,7 @@
 		095CF59118E5AD0A004BAD57 /* MRGArchitect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRGArchitect.m; sourceTree = "<group>"; };
 		095CF59418E5AD90004BAD57 /* MRGArchitectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRGArchitectTests.m; sourceTree = "<group>"; };
 		095CF59618E5ADA4004BAD57 /* MRGArchitectTests.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MRGArchitectTests.json; sourceTree = "<group>"; };
+		095CF59918E5C31E004BAD57 /* MRGArchitectTests_Invalid.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MRGArchitectTests_Invalid.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +142,7 @@
 			children = (
 				095CF59618E5ADA4004BAD57 /* MRGArchitectTests.json */,
 				095CF59418E5AD90004BAD57 /* MRGArchitectTests.m */,
+				095CF59918E5C31E004BAD57 /* MRGArchitectTests_Invalid.json */,
 				095CF58018E5AD03004BAD57 /* Supporting Files */,
 			);
 			path = MRGArchitectExampleTests;
@@ -242,6 +246,7 @@
 				095CF56B18E5AD03004BAD57 /* InfoPlist.strings in Resources */,
 				095CF57318E5AD03004BAD57 /* Images.xcassets in Resources */,
 				095CF59718E5ADA4004BAD57 /* MRGArchitectTests.json in Resources */,
+				095CF59A18E5C31E004BAD57 /* MRGArchitectTests_Invalid.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				095CF59818E5ADA4004BAD57 /* MRGArchitectTests.json in Resources */,
+				095CF59B18E5C31E004BAD57 /* MRGArchitectTests_Invalid.json in Resources */,
 				095CF58418E5AD03004BAD57 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
