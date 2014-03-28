@@ -169,7 +169,6 @@ static const CGFloat accuracy = 0.01f;
 
 - (void)testNotQuitePoint {
     CGPoint value = [self.architect pointForKey:@"testNotQuitePoint"];
-    NSLog(@"value: %@", NSStringFromCGPoint(value));
     CGPoint expectedValue = CGPointZero;
     XCTAssertTrue(CGPointEqualToPoint(expectedValue, value), @"Expecting the CGPoint value '{0, 0}' for key: testNotQuitePoint");
 }
@@ -181,6 +180,35 @@ static const CGFloat accuracy = 0.01f;
     }
     @catch (NSException *exception) {
         XCTAssertNotNil(exception, @"Expecting an exception to be thrown for key: testNonPointKey");
+        XCTAssertEqual(MRGArchitectUnexpectedValueTypeException, exception.name, @"Expecting the exception thrown to be named: MRGArchitectUnexpectedValueTypeException");
+    }
+}
+
+- (void)testSizeForKey {
+    CGSize value = [self.architect sizeForKey:@"testSizeForKey"];
+    CGSize expectedValue = CGSizeMake(10.0f, 20.0f);
+    XCTAssertTrue(CGSizeEqualToSize(expectedValue, value), @"Expecting the CGSize value '{10, 20}' for key: testSizeForKey");
+}
+
+- (void)testStringSizeForKey {
+    CGSize value = [self.architect sizeForKey:@"testStringSizeForKey"];
+    CGSize expectedValue = CGSizeMake(20.0f, 10.0f);
+    XCTAssertTrue(CGSizeEqualToSize(expectedValue, value), @"Expecting the CGSize value '{20, 10}' for key: testStringSizeForKey");
+}
+
+- (void)testNotQuiteSize {
+    CGSize value = [self.architect sizeForKey:@"testNotQuiteSize"];
+    CGSize expectedValue = CGSizeZero;
+    XCTAssertTrue(CGSizeEqualToSize(expectedValue, value), @"Expecting the CGSize value '{0, 0}' for key: testNotQuiteSize");
+}
+
+- (void)testNonSizeKey {
+    CGSize value;
+    @try {
+        value = [self.architect sizeForKey:@"testNonSizeKey"];
+    }
+    @catch (NSException *exception) {
+        XCTAssertNotNil(exception, @"Expecting an exception to be thrown for key: testNonSizeKey");
         XCTAssertEqual(MRGArchitectUnexpectedValueTypeException, exception.name, @"Expecting the exception thrown to be named: MRGArchitectUnexpectedValueTypeException");
     }
 }

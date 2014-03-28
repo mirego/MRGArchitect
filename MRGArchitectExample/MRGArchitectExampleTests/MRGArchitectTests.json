@@ -23,5 +23,12 @@
     },
     "testStringPointForKey": "{2.0, 1.0}",
     "testNotQuitePoint": "notQuitePoint",
-    "testNonPointKey": 42
+    "testNonPointKey": 42,
+    "testSizeForKey": {
+        "width": 10.0,
+        "height": 20.0
+    },
+    "testStringSizeForKey": "{20.0, 10.0}",
+    "testNotQuiteSize": "notQuiteSize",
+    "testNonSizeKey": 42,
 }

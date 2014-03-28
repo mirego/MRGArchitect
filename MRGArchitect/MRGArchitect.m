@@ -157,6 +157,33 @@ static UIColor *MRGUIColorWithHexString(NSString *hexString) {
     }
 }
 
+- (CGSize)sizeForKey:(NSString *)key {
+    id object = [self objectForKey:key];
+    if ([object isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *dictionary = (NSDictionary *)object;
+        CGFloat width = 0.0f;
+        CGFloat height = 0.0f;
+        if ([[dictionary allKeys] containsObject:@"width"]) {
+            id obj = [dictionary objectForKey:@"width"];
+            if ([obj isKindOfClass:[NSNumber class]]) {
+                width = [obj floatValue];
+            }
+        }
+        if ([[dictionary allKeys] containsObject:@"height"]) {
+            id obj = [dictionary objectForKey:@"height"];
+            if ([obj isKindOfClass:[NSNumber class]]) {
+                height = [obj floatValue];
+            }
+        }
+        return CGSizeMake(width, height);
+    } else if ([object isKindOfClass:[NSString class]]) {
+        return CGSizeFromString(object);
+    } else {
+        NSString *reason = [NSString stringWithFormat:@"Unexpected value type for key '%@'", key];
+        @throw [NSException exceptionWithName:MRGArchitectUnexpectedValueTypeException reason:reason userInfo:nil];
+    }
+}
+
 
 #pragma mark - Private Implementation
 
