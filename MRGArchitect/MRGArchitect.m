@@ -84,6 +84,49 @@ static UIColor *MRGUIColorWithHexString(NSString *hexString) {
     return MRGUIColorWithHexString(hexString);
 }
 
+- (UIEdgeInsets)edgeInsetsForKey:(NSString *)key {
+    id object = [self objectForKey:key];
+    if ([object isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *dictionary = (NSDictionary *)object;
+    
+        CGFloat top = 0.0f;
+        CGFloat left = 0.0f;
+        CGFloat bottom = 0.0f;
+        CGFloat right = 0.0f;
+        
+        if ([[dictionary allKeys] containsObject:@"top"]) {
+            id object = [dictionary objectForKey:@"top"];
+            if ([object isKindOfClass:[NSNumber class]]) {
+                top = [object floatValue];
+            }
+        }
+        if ([[dictionary allKeys] containsObject:@"left"]) {
+            id object = [dictionary objectForKey:@"left"];
+            if ([object isKindOfClass:[NSNumber class]]) {
+                left = [object floatValue];
+            }
+        }
+        if ([[dictionary allKeys] containsObject:@"bottom"]) {
+            id object = [dictionary objectForKey:@"bottom"];
+            if ([object isKindOfClass:[NSNumber class]]) {
+                bottom = [object floatValue];
+            }
+        }
+        if ([[dictionary allKeys] containsObject:@"right"]) {
+            id object = [dictionary objectForKey:@"right"];
+            if ([object isKindOfClass:[NSNumber class]]) {
+                right = [object floatValue];
+            }
+        }
+        return UIEdgeInsetsMake(top, left, bottom, right);
+    } else if ([object isKindOfClass:[NSString class]]) {
+        return UIEdgeInsetsFromString(object);
+    } else {
+        NSString *reason = [NSString stringWithFormat:@"Unexpected value type for key '%@'", key];
+        @throw [NSException exceptionWithName:MRGArchitectUnexpectedValueTypeException reason:reason userInfo:nil];
+    }
+}
+
 
 #pragma mark - Private Implementation
 

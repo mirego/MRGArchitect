@@ -7,5 +7,14 @@
     "testFloatForKey": 3.14159265359,
     "testNonFloatForKey": "nonFloat",
     "testColorForKey": "#FF0000",
-    "testNonColorForKey": 42
+    "testNonColorForKey": 42,
+    "testEdgeInsetsKey": {
+        "top": 1.0,
+        "left": 2.0,
+        "bottom": 3.0,
+        "right": 4.0
+    },
+    "testStringEdgeInsetsKey": "{4.0, 3.0, 2.0, 1.0}",
+    "testNotQuiteEdgeInsetsKey": "notQuiteEdgeInsets",
+    "testNonEdgeInsetsKey": 42
 }

@@ -115,6 +115,35 @@ static const CGFloat accuracy = 0.01f;
     }
 }
 
+- (void)testEdgeInsetsKey {
+    UIEdgeInsets value = [self.architect edgeInsetsForKey:@"testEdgeInsetsKey"];
+    UIEdgeInsets expectedValue = UIEdgeInsetsMake(1.0f, 2.0f, 3.0f, 4.0f);
+    XCTAssertTrue(UIEdgeInsetsEqualToEdgeInsets(expectedValue, value), @"Expecting the UIEdgeInsets value '{1, 2, 3, 4}' for key: testEdgeInsetsKey");
+}
+
+- (void)testStringEdgeInsetsKey {
+    UIEdgeInsets value = [self.architect edgeInsetsForKey:@"testStringEdgeInsetsKey"];
+    UIEdgeInsets expectedValue = UIEdgeInsetsMake(4.0f, 3.0f, 2.0f, 1.0f);
+    XCTAssertTrue(UIEdgeInsetsEqualToEdgeInsets(expectedValue, value), @"Expecting the UIEdgeInsets value '{4, 3, 2, 1}' for key: testStringEdgeInsetsKey");
+}
+
+- (void)testNonEdgeInsetsKey {
+    UIEdgeInsets value;
+    @try {
+        value = [self.architect edgeInsetsForKey:@"testNonEdgeInsetsKey"];
+    }
+    @catch (NSException *exception) {
+        XCTAssertNotNil(exception, @"Expecting an exception to be thrown for key: testNonEdgeInsetsKey");
+        XCTAssertEqual(MRGArchitectUnexpectedValueTypeException, exception.name, @"Expecting the exception thrown to be named: MRGArchitectUnexpectedValueTypeException");
+    }
+}
+
+- (void)testNotQuiteEdgeInsetsKey {
+    UIEdgeInsets value = [self.architect edgeInsetsForKey:@"testNotQuiteEdgeInsetsKey"];
+    UIEdgeInsets expectedValue = UIEdgeInsetsZero;
+    XCTAssertTrue(UIEdgeInsetsEqualToEdgeInsets(expectedValue, value), @"Expecting the UIEdgeInsets value '{0, 0, 0, 0}' for key: testNotQuiteEdgeInsetsKey");
+}
+
 - (void)testNotFoundKey {
     NSString *value = nil;
     @try {
