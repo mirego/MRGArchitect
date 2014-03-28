@@ -1,0 +1,11 @@
+{
+    "testBoolForKey": true,
+    "testStringForKey": "Hello, World!",
+    "testNonStringForKey": 12.34,
+    "testIntegerForKey": 3,
+    "testNonIntegerForKey": "nonInteger",
+    "testFloatForKey": 3.14159265359,
+    "testNonFloatForKey": "nonFloat",
+    "testColorForKey": "#FF0000",
+    "testNonColorForKey": 42
+}
