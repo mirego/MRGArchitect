@@ -98,32 +98,59 @@ static UIColor *MRGUIColorWithHexString(NSString *hexString) {
         CGFloat right = 0.0f;
         
         if ([[dictionary allKeys] containsObject:@"top"]) {
-            id object = [dictionary objectForKey:@"top"];
-            if ([object isKindOfClass:[NSNumber class]]) {
-                top = [object floatValue];
+            id obj = [dictionary objectForKey:@"top"];
+            if ([obj isKindOfClass:[NSNumber class]]) {
+                top = [obj floatValue];
             }
         }
         if ([[dictionary allKeys] containsObject:@"left"]) {
-            id object = [dictionary objectForKey:@"left"];
-            if ([object isKindOfClass:[NSNumber class]]) {
-                left = [object floatValue];
+            id obj = [dictionary objectForKey:@"left"];
+            if ([obj isKindOfClass:[NSNumber class]]) {
+                left = [obj floatValue];
             }
         }
         if ([[dictionary allKeys] containsObject:@"bottom"]) {
-            id object = [dictionary objectForKey:@"bottom"];
-            if ([object isKindOfClass:[NSNumber class]]) {
-                bottom = [object floatValue];
+            id obj = [dictionary objectForKey:@"bottom"];
+            if ([obj isKindOfClass:[NSNumber class]]) {
+                bottom = [obj floatValue];
             }
         }
         if ([[dictionary allKeys] containsObject:@"right"]) {
-            id object = [dictionary objectForKey:@"right"];
-            if ([object isKindOfClass:[NSNumber class]]) {
-                right = [object floatValue];
+            id obj = [dictionary objectForKey:@"right"];
+            if ([obj isKindOfClass:[NSNumber class]]) {
+                right = [obj floatValue];
             }
         }
         return UIEdgeInsetsMake(top, left, bottom, right);
     } else if ([object isKindOfClass:[NSString class]]) {
         return UIEdgeInsetsFromString(object);
+    } else {
+        NSString *reason = [NSString stringWithFormat:@"Unexpected value type for key '%@'", key];
+        @throw [NSException exceptionWithName:MRGArchitectUnexpectedValueTypeException reason:reason userInfo:nil];
+    }
+}
+
+- (CGPoint)pointForKey:(NSString *)key {
+    id object = [self objectForKey:key];
+    if ([object isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *dictionary = (NSDictionary *)object;
+        CGFloat x = 0.0f;
+        CGFloat y = 0.0f;
+        if ([[dictionary allKeys] containsObject:@"x"]) {
+            id obj = [dictionary objectForKey:@"x"];
+            if ([obj isKindOfClass:[NSNumber class]]) {
+                x = [obj floatValue];
+            }
+        }
+        if ([[dictionary allKeys] containsObject:@"y"]) {
+            id obj = [dictionary objectForKey:@"y"];
+            if ([obj isKindOfClass:[NSNumber class]]) {
+                y = [obj floatValue];
+            }
+        }
+        return CGPointMake(x, y);
+    } else if ([object isKindOfClass:[NSString class]]) {
+        return CGPointFromString(object);
     } else {
         NSString *reason = [NSString stringWithFormat:@"Unexpected value type for key '%@'", key];
         @throw [NSException exceptionWithName:MRGArchitectUnexpectedValueTypeException reason:reason userInfo:nil];

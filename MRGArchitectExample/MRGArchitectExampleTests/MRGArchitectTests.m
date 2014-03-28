@@ -155,6 +155,36 @@ static const CGFloat accuracy = 0.01f;
     XCTAssertTrue(UIEdgeInsetsEqualToEdgeInsets(expectedValue, value), @"Expecting the UIEdgeInsets value '{0, 0, 0, 0}' for key: testNotQuiteEdgeInsetsKey");
 }
 
+- (void)testPointForKey {
+    CGPoint value = [self.architect pointForKey:@"testPointForKey"];
+    CGPoint expectedValue = CGPointMake(1.0f, 2.0f);
+    XCTAssertTrue(CGPointEqualToPoint(expectedValue, value), @"Expecting the CGPoint value '{1, 2}' for key: testPointForKey");
+}
+
+- (void)testStringPointForKey {
+    CGPoint value = [self.architect pointForKey:@"testStringPointForKey"];
+    CGPoint expectedValue = CGPointMake(2.0f, 1.0f);
+    XCTAssertTrue(CGPointEqualToPoint(expectedValue, value), @"Expecting the CGPoint value '{2, 1}' for key: testStringPointForKey");
+}
+
+- (void)testNotQuitePoint {
+    CGPoint value = [self.architect pointForKey:@"testNotQuitePoint"];
+    NSLog(@"value: %@", NSStringFromCGPoint(value));
+    CGPoint expectedValue = CGPointZero;
+    XCTAssertTrue(CGPointEqualToPoint(expectedValue, value), @"Expecting the CGPoint value '{0, 0}' for key: testNotQuitePoint");
+}
+
+- (void)testNonPointKey {
+    CGPoint value;
+    @try {
+        value = [self.architect pointForKey:@"testNonPointKey"];
+    }
+    @catch (NSException *exception) {
+        XCTAssertNotNil(exception, @"Expecting an exception to be thrown for key: testNonPointKey");
+        XCTAssertEqual(MRGArchitectUnexpectedValueTypeException, exception.name, @"Expecting the exception thrown to be named: MRGArchitectUnexpectedValueTypeException");
+    }
+}
+
 - (void)testNotFoundKey {
     NSString *value = nil;
     @try {

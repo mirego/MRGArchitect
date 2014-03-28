@@ -16,5 +16,12 @@
     },
     "testStringEdgeInsetsKey": "{4.0, 3.0, 2.0, 1.0}",
     "testNotQuiteEdgeInsetsKey": "notQuiteEdgeInsets",
-    "testNonEdgeInsetsKey": 42
+    "testNonEdgeInsetsKey": 42,
+    "testPointForKey": {
+        "x": 1.0,
+        "y": 2.0
+    },
+    "testStringPointForKey": "{2.0, 1.0}",
+    "testNotQuitePoint": "notQuitePoint",
+    "testNonPointKey": 42
 }
