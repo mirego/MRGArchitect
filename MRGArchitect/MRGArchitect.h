@@ -33,9 +33,9 @@ static NSString * const MRGArchitectUnexpectedValueTypeException = @"MRGArchitec
 
 @interface MRGArchitect : NSObject
 
-- (id)init __attribute__((unavailable));
-- (instancetype)initWithClassName:(NSString *)className;
++ (instancetype)architectForClassName:(NSString *)className;
 
+- (id)init __attribute__((unavailable));
 - (BOOL)boolForKey:(NSString *)key;
 - (NSString *)stringForKey:(NSString *)key;
 - (NSInteger)integerForKey:(NSString *)key;

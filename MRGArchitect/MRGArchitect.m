@@ -41,12 +41,9 @@ static UIColor *MRGUIColorWithHexString(NSString *hexString) {
 
 @implementation MRGArchitect
 
-- (instancetype)initWithClassName:(NSString *)className {
-    if (self = [super init]) {
-        _entries = [self loadEntriesWithClassName:className];
-    }
-    
-    return self;
++ (instancetype)architectForClassName:(NSString *)className {
+    MRGArchitect *architect = [[MRGArchitect alloc] initWithClassName:className];
+    return architect;
 }
 
 - (BOOL)boolForKey:(NSString *)key {
@@ -180,6 +177,14 @@ static UIColor *MRGUIColorWithHexString(NSString *hexString) {
 
 
 #pragma mark - Private Implementation
+
+- (instancetype)initWithClassName:(NSString *)className {
+    if (self = [super init]) {
+        _entries = [self loadEntriesWithClassName:className];
+    }
+    
+    return self;
+}
 
 - (NSDictionary *)loadEntriesWithClassName:(NSString *)className {
     NSMutableArray *paths = [[NSMutableArray alloc] init];

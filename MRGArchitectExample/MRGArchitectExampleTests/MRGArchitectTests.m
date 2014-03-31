@@ -38,7 +38,7 @@ static const CGFloat accuracy = 0.01f;
 
 - (void)setUp {
     [super setUp];
-    _architect = [[MRGArchitect alloc] initWithClassName:NSStringFromClass([self class])];
+    _architect = [MRGArchitect architectForClassName:NSStringFromClass([self class])];
 }
 
 - (void)tearDown {
@@ -49,7 +49,7 @@ static const CGFloat accuracy = 0.01f;
 - (void)testParseError {
     MRGArchitect *architect = nil;
     @try {
-        architect = [[MRGArchitect alloc] initWithClassName:@"MRGArchitectTests_Invalid"];
+        architect = [MRGArchitect architectForClassName:@"MRGArchitectTests_Invalid"];
     }
     @catch (NSException *exception) {
         XCTAssertNotNil(exception, @"Expecting an exception to be thrown for key: testParseError");
