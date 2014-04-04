@@ -37,6 +37,7 @@ static UIColor *MRGUIColorWithHexString(NSString *hexString) {
 
 @interface MRGArchitect ()
 @property NSDictionary *entries;
+@property NSCache *fontCache;
 @end
 
 @implementation MRGArchitect
@@ -175,12 +176,43 @@ static UIColor *MRGUIColorWithHexString(NSString *hexString) {
     }
 }
 
+- (UIFont *)fontForKey:(NSString *)key {
+    UIFont *cachedFont = [self.fontCache objectForKey:key];
+    if (nil != cachedFont) return cachedFont;
+    
+    id object = [self objectForKey:key];
+    if ([object isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *dictionary = (NSDictionary *)object;
+        NSString *name = nil;
+        CGFloat size = 0.0f;
+        if ([[dictionary allKeys] containsObject:@"name"]) {
+            id obj = [dictionary objectForKey:@"name"];
+            if ([obj isKindOfClass:[NSString class]]) {
+                name = obj;
+            }
+        }
+        if ([[dictionary allKeys] containsObject:@"size"]) {
+            id obj = [dictionary objectForKey:@"size"];
+            if ([obj isKindOfClass:[NSNumber class]]) {
+                size = [obj floatValue];
+            }
+        }
+        UIFont *font = [UIFont fontWithName:name size:size];
+        [self.fontCache setObject:font forKey:key];
+        return font;
+    } else {
+        NSString *reason = [NSString stringWithFormat:@"Unexpected value type for key '%@'", key];
+        @throw [NSException exceptionWithName:MRGArchitectUnexpectedValueTypeException reason:reason userInfo:nil];
+    }
+}
+
 
 #pragma mark - Private Implementation
 
 - (instancetype)initWithClassName:(NSString *)className {
     if (self = [super init]) {
         _entries = [self loadEntriesWithClassName:className];
+        _fontCache = [NSCache new];
     }
     
     return self;

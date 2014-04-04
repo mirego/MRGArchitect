@@ -31,5 +31,10 @@
     "testStringSizeForKey": "{20.0, 10.0}",
     "testNotQuiteSize": "notQuiteSize",
     "testNonSizeKey": 42,
-    "testOverridenKey": 42
+    "testOverridenKey": 42,
+    "testFontKey": {
+        "name": "HelveticaNeue",
+        "size": 15.0
+    },
+    "testNonQuiteFont": "testNonQuiteFont"
 }

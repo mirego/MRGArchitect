@@ -229,4 +229,20 @@ static const CGFloat accuracy = 0.01f;
     XCTAssertEqual(54, value, @"Expecting the integer value '54' for the key: testOverridenKey");
 }
 
+- (void)testFontKey {
+    UIFont *font = [self.architect fontForKey:@"testFontKey"];
+    XCTAssertNotNil(font, @"Expecting the UIFont of name 'HelveticaNeue' for key: testFontKey");
+}
+
+- (void)testNonQuiteFont {
+    UIFont *font = nil;
+    @try {
+        font = [self.architect fontForKey:@"testNonQuiteFont"];
+    }
+    @catch (NSException *exception) {
+        XCTAssertNotNil(exception, @"Expecting an exception to be thrown for key: testNonQuiteFont");
+        XCTAssertEqual(MRGArchitectUnexpectedValueTypeException, exception.name, @"Expecting the exception thrown to be named: MRGArchitectUnexpectedValueTypeException");
+    }
+}
+
 @end

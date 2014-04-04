@@ -44,5 +44,6 @@ static NSString * const MRGArchitectUnexpectedValueTypeException = @"MRGArchitec
 - (UIEdgeInsets)edgeInsetsForKey:(NSString *)key;
 - (CGPoint)pointForKey:(NSString *)key;
 - (CGSize)sizeForKey:(NSString *)key;
+- (UIFont *)fontForKey:(NSString *)key;
 
 @end
