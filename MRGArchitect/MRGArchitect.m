@@ -37,6 +37,7 @@ static UIColor *MRGUIColorWithHexString(NSString *hexString) {
 
 @interface MRGArchitect ()
 @property NSDictionary *entries;
+@property NSCache *colorCache;
 @property NSCache *fontCache;
 @end
 
@@ -75,6 +76,9 @@ static UIColor *MRGUIColorWithHexString(NSString *hexString) {
 }
 
 - (UIColor *)colorForKey:(NSString *)key {
+    UIColor *cachedColor = [self.colorCache objectForKey:@"key"];
+    if (nil != cachedColor) return cachedColor;
+    
     NSString *hexString = [self stringForKey:key];
     return MRGUIColorWithHexString(hexString);
 }
@@ -265,6 +269,7 @@ static UIColor *MRGUIColorWithHexString(NSString *hexString) {
 - (instancetype)initWithClassName:(NSString *)className {
     if (self = [super init]) {
         _entries = [self loadEntriesWithClassName:className];
+        _colorCache = [NSCache new];
         _fontCache = [NSCache new];
     }
     
