@@ -206,6 +206,59 @@ static UIColor *MRGUIColorWithHexString(NSString *hexString) {
     }
 }
 
+- (CGRect)rectForKey:(NSString *)key {
+    id object = [self objectForKey:key];
+    if ([object isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *dictionary = (NSDictionary *)object;
+        CGPoint origin = CGPointZero;
+        CGSize size = CGSizeZero;
+        if ([[dictionary allKeys] containsObject:@"origin"]) {
+            id originObj = [dictionary objectForKey:@"origin"];
+            if ([originObj isKindOfClass:[NSDictionary class]]) {
+                NSDictionary *dict = (NSDictionary *)originObj;
+                CGFloat x = 0.0f;
+                CGFloat y = 0.0f;
+                if ([[dict allKeys] containsObject:@"x"]) {
+                    id obj = [dict objectForKey:@"x"];
+                    if ([obj isKindOfClass:[NSNumber class]]) {
+                        x = [obj floatValue];
+                    }
+                }
+                if ([[dict allKeys] containsObject:@"y"]) {
+                    id obj = [dict objectForKey:@"y"];
+                    if ([obj isKindOfClass:[NSNumber class]]) {
+                        y = [obj floatValue];
+                    }
+                }
+                origin = CGPointMake(x, y);
+            }
+            id sizeObj = [dictionary objectForKey:@"size"];
+            if ([sizeObj isKindOfClass:[NSDictionary class]]) {
+                NSDictionary *dict = (NSDictionary *)sizeObj;
+                CGFloat width = 0.0f;
+                CGFloat height = 0.0f;
+                if ([[dict allKeys] containsObject:@"width"]) {
+                    id obj = [dict objectForKey:@"width"];
+                    if ([obj isKindOfClass:[NSNumber class]]) {
+                        width = [obj floatValue];
+                    }
+                }
+                if ([[dict allKeys] containsObject:@"height"]) {
+                    id obj = [dict objectForKey:@"height"];
+                    if ([obj isKindOfClass:[NSNumber class]]) {
+                        height = [obj floatValue];
+                    }
+                }
+                size = CGSizeMake(width, height);
+            }
+        }
+        return CGRectMake(origin.x, origin.y, size.width, size.height);
+    } else {
+        NSString *reason = [NSString stringWithFormat:@"Unexpected value type for key '%@'", key];
+        @throw [NSException exceptionWithName:MRGArchitectUnexpectedValueTypeException reason:reason userInfo:nil];
+    }
+}
+
 
 #pragma mark - Private Implementation
 

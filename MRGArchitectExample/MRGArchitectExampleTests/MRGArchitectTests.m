@@ -230,17 +230,34 @@ static const CGFloat accuracy = 0.01f;
 }
 
 - (void)testFontKey {
-    UIFont *font = [self.architect fontForKey:@"testFontKey"];
-    XCTAssertNotNil(font, @"Expecting the UIFont of name 'HelveticaNeue' for key: testFontKey");
+    UIFont *value = [self.architect fontForKey:@"testFontKey"];
+    XCTAssertNotNil(value, @"Expecting the UIFont of name 'HelveticaNeue' for key: testFontKey");
 }
 
-- (void)testNonQuiteFont {
-    UIFont *font = nil;
+- (void)testNotQuiteFont {
+    UIFont *value = nil;
     @try {
-        font = [self.architect fontForKey:@"testNonQuiteFont"];
+        value = [self.architect fontForKey:@"testNotQuiteFont"];
     }
     @catch (NSException *exception) {
-        XCTAssertNotNil(exception, @"Expecting an exception to be thrown for key: testNonQuiteFont");
+        XCTAssertNotNil(exception, @"Expecting an exception to be thrown for key: testNotQuiteFont");
+        XCTAssertEqual(MRGArchitectUnexpectedValueTypeException, exception.name, @"Expecting the exception thrown to be named: MRGArchitectUnexpectedValueTypeException");
+    }
+}
+
+- (void)testRectForKey {
+    CGRect value = [self.architect rectForKey:@"testRectForKey"];
+    CGRect expectedValue = CGRectMake(10.0, 10.0, 64.0, 64.0);
+    XCTAssertTrue(CGRectEqualToRect(expectedValue, value), @"Expecting the CGRect value '{{10.0, 10.0}, {64.0, 64.0}}' for key: testRectForKey");
+}
+
+- (void)testNotQuiteRect {
+    CGRect value;
+    @try {
+        value = [self.architect rectForKey:@"testNotQuiteRect"];
+    }
+    @catch (NSException *exception) {
+        XCTAssertNotNil(exception, @"Expecting an exception to be thrown for key: testNotQuiteRect");
         XCTAssertEqual(MRGArchitectUnexpectedValueTypeException, exception.name, @"Expecting the exception thrown to be named: MRGArchitectUnexpectedValueTypeException");
     }
 }
