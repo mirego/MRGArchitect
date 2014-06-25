@@ -53,7 +53,7 @@ static const CGFloat accuracy = 0.01f;
     }
     @catch (NSException *exception) {
         XCTAssertNotNil(exception, @"Expecting an exception to be thrown for key: testParseError");
-        XCTAssertEqual(MRGArchitectParseErrorException, exception.name, @"Expecting the exception thrown to be named: MRGArchitectParseErrorException");
+        XCTAssertEqualObjects(MRGArchitectParseErrorException, exception.name, @"Expecting the exception thrown to be named: MRGArchitectParseErrorException");
     }
 }
 
