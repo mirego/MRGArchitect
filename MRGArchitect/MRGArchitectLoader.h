@@ -27,22 +27,12 @@
 
 #import <Foundation/Foundation.h>
 
-#import "MRGArchitectExceptions.h" // Custom Architect exceptions
+@protocol MRGArchitectAction;
 
-@interface MRGArchitect : NSObject
+@protocol MRGArchitectLoader <NSObject>
 
-+ (instancetype)architectForClassName:(NSString *)className;
+- (void)registerAction:(Class)actionToRegister;
 
-- (id)init __attribute__((unavailable));
-- (BOOL)boolForKey:(NSString *)key;
-- (NSString *)stringForKey:(NSString *)key;
-- (NSInteger)integerForKey:(NSString *)key;
-- (CGFloat)floatForKey:(NSString *)key;
-- (UIColor *)colorForKey:(NSString *)key;
-- (UIEdgeInsets)edgeInsetsForKey:(NSString *)key;
-- (CGPoint)pointForKey:(NSString *)key;
-- (CGSize)sizeForKey:(NSString *)key;
-- (UIFont *)fontForKey:(NSString *)key;
-- (CGRect)rectForKey:(NSString *)key;
+- (NSDictionary *)loadEntriesWithClassName:(NSString *)className;
 
 @end

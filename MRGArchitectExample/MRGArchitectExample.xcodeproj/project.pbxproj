@@ -26,6 +26,14 @@
 		095CF59A18E5C31E004BAD57 /* MRGArchitectTests_Invalid.json in Resources */ = {isa = PBXBuildFile; fileRef = 095CF59918E5C31E004BAD57 /* MRGArchitectTests_Invalid.json */; };
 		095CF59B18E5C31E004BAD57 /* MRGArchitectTests_Invalid.json in Resources */ = {isa = PBXBuildFile; fileRef = 095CF59918E5C31E004BAD57 /* MRGArchitectTests_Invalid.json */; };
 		0993CDA118E5EEFA00585F02 /* MRGArchitectTests~iphone.json in Resources */ = {isa = PBXBuildFile; fileRef = 0993CDA018E5EEFA00585F02 /* MRGArchitectTests~iphone.json */; };
+		9B9703142E34FC877CF98BB4 /* MRGArchitectImportAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B97030B09FE4890D1A33ED1 /* MRGArchitectImportAction.m */; };
+		9B970F10323707CEFC766D76 /* MRGArchitectJSONLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B970666B47547FFEE1A8EC3 /* MRGArchitectJSONLoader.m */; };
+		DC14C753195B523300C2349C /* MRGArchitectTestImport.json in Resources */ = {isa = PBXBuildFile; fileRef = 9B970CFC7B170BE1C75F360B /* MRGArchitectTestImport.json */; };
+		DC14C754195B527400C2349C /* MRGArchitectTestImport.json in Resources */ = {isa = PBXBuildFile; fileRef = 9B970CFC7B170BE1C75F360B /* MRGArchitectTestImport.json */; };
+		DC14C755195B527700C2349C /* MRGArchitectTests~iphone.json in Resources */ = {isa = PBXBuildFile; fileRef = 0993CDA018E5EEFA00585F02 /* MRGArchitectTests~iphone.json */; };
+		DC14C758195B5B3C00C2349C /* MRGArchitectTests_InvalidAction.json in Resources */ = {isa = PBXBuildFile; fileRef = DC14C756195B5B3C00C2349C /* MRGArchitectTests_InvalidAction.json */; };
+		DC14C759195B5B3C00C2349C /* MRGArchitectTests_InvalidImportActionValue.json in Resources */ = {isa = PBXBuildFile; fileRef = DC14C757195B5B3C00C2349C /* MRGArchitectTests_InvalidImportActionValue.json */; };
+		DC14C75B195B5CB700C2349C /* MRGArchitectJSONLoaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DC14C75A195B5CB700C2349C /* MRGArchitectJSONLoaderTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +68,17 @@
 		095CF59618E5ADA4004BAD57 /* MRGArchitectTests.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MRGArchitectTests.json; sourceTree = "<group>"; };
 		095CF59918E5C31E004BAD57 /* MRGArchitectTests_Invalid.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MRGArchitectTests_Invalid.json; sourceTree = "<group>"; };
 		0993CDA018E5EEFA00585F02 /* MRGArchitectTests~iphone.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "MRGArchitectTests~iphone.json"; sourceTree = "<group>"; };
+		9B9701463692D1F9009C4D5B /* MRGArchitectJSONLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRGArchitectJSONLoader.h; sourceTree = "<group>"; };
+		9B97030B09FE4890D1A33ED1 /* MRGArchitectImportAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRGArchitectImportAction.m; sourceTree = "<group>"; };
+		9B970666B47547FFEE1A8EC3 /* MRGArchitectJSONLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRGArchitectJSONLoader.m; sourceTree = "<group>"; };
+		9B9708B399949C61F4FAE601 /* MRGArchitectLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRGArchitectLoader.h; sourceTree = "<group>"; };
+		9B970A7EAA3AFBBB21CDBEB0 /* MRGArchitectAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRGArchitectAction.h; sourceTree = "<group>"; };
+		9B970BA79129F55E751CB0A6 /* MRGArchitectImportAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRGArchitectImportAction.h; sourceTree = "<group>"; };
+		9B970C8F1636A8269C017058 /* MRGArchitectExceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRGArchitectExceptions.h; sourceTree = "<group>"; };
+		9B970CFC7B170BE1C75F360B /* MRGArchitectTestImport.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MRGArchitectTestImport.json; sourceTree = "<group>"; };
+		DC14C756195B5B3C00C2349C /* MRGArchitectTests_InvalidAction.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MRGArchitectTests_InvalidAction.json; sourceTree = "<group>"; };
+		DC14C757195B5B3C00C2349C /* MRGArchitectTests_InvalidImportActionValue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MRGArchitectTests_InvalidImportActionValue.json; sourceTree = "<group>"; };
+		DC14C75A195B5CB700C2349C /* MRGArchitectJSONLoaderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRGArchitectJSONLoaderTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,9 +161,13 @@
 		095CF57F18E5AD03004BAD57 /* MRGArchitectExampleTests */ = {
 			isa = PBXGroup;
 			children = (
+				DC14C75A195B5CB700C2349C /* MRGArchitectJSONLoaderTests.m */,
+				9B970CFC7B170BE1C75F360B /* MRGArchitectTestImport.json */,
 				095CF59618E5ADA4004BAD57 /* MRGArchitectTests.json */,
 				095CF59418E5AD90004BAD57 /* MRGArchitectTests.m */,
 				095CF59918E5C31E004BAD57 /* MRGArchitectTests_Invalid.json */,
+				DC14C756195B5B3C00C2349C /* MRGArchitectTests_InvalidAction.json */,
+				DC14C757195B5B3C00C2349C /* MRGArchitectTests_InvalidImportActionValue.json */,
 				0993CDA018E5EEFA00585F02 /* MRGArchitectTests~iphone.json */,
 				095CF58018E5AD03004BAD57 /* Supporting Files */,
 			);
@@ -165,6 +188,13 @@
 			children = (
 				095CF59018E5AD0A004BAD57 /* MRGArchitect.h */,
 				095CF59118E5AD0A004BAD57 /* MRGArchitect.m */,
+				9B970A7EAA3AFBBB21CDBEB0 /* MRGArchitectAction.h */,
+				9B970666B47547FFEE1A8EC3 /* MRGArchitectJSONLoader.m */,
+				9B9701463692D1F9009C4D5B /* MRGArchitectJSONLoader.h */,
+				9B9708B399949C61F4FAE601 /* MRGArchitectLoader.h */,
+				9B97030B09FE4890D1A33ED1 /* MRGArchitectImportAction.m */,
+				9B970BA79129F55E751CB0A6 /* MRGArchitectImportAction.h */,
+				9B970C8F1636A8269C017058 /* MRGArchitectExceptions.h */,
 			);
 			name = MRGArchitect;
 			path = ../MRGArchitect;
@@ -246,9 +276,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC14C755195B527700C2349C /* MRGArchitectTests~iphone.json in Resources */,
 				095CF56B18E5AD03004BAD57 /* InfoPlist.strings in Resources */,
 				095CF57318E5AD03004BAD57 /* Images.xcassets in Resources */,
 				095CF59718E5ADA4004BAD57 /* MRGArchitectTests.json in Resources */,
+				DC14C754195B527400C2349C /* MRGArchitectTestImport.json in Resources */,
 				095CF59A18E5C31E004BAD57 /* MRGArchitectTests_Invalid.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,9 +289,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC14C759195B5B3C00C2349C /* MRGArchitectTests_InvalidImportActionValue.json in Resources */,
 				095CF59818E5ADA4004BAD57 /* MRGArchitectTests.json in Resources */,
 				095CF59B18E5C31E004BAD57 /* MRGArchitectTests_Invalid.json in Resources */,
+				DC14C758195B5B3C00C2349C /* MRGArchitectTests_InvalidAction.json in Resources */,
 				0993CDA118E5EEFA00585F02 /* MRGArchitectTests~iphone.json in Resources */,
+				DC14C753195B523300C2349C /* MRGArchitectTestImport.json in Resources */,
 				095CF58418E5AD03004BAD57 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,6 +309,8 @@
 				095CF59218E5AD0A004BAD57 /* MRGArchitect.m in Sources */,
 				095CF56D18E5AD03004BAD57 /* main.m in Sources */,
 				095CF57118E5AD03004BAD57 /* MRGAppDelegate.m in Sources */,
+				9B970F10323707CEFC766D76 /* MRGArchitectJSONLoader.m in Sources */,
+				9B9703142E34FC877CF98BB4 /* MRGArchitectImportAction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +318,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC14C75B195B5CB700C2349C /* MRGArchitectJSONLoaderTests.m in Sources */,
 				095CF59518E5AD90004BAD57 /* MRGArchitectTests.m in Sources */,
 				095CF59318E5AD0A004BAD57 /* MRGArchitect.m in Sources */,
 			);

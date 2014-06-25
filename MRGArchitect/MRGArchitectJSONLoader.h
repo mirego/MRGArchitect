@@ -26,23 +26,8 @@
 // POSSIBILITY OF SUCH DAMAGE.
 
 #import <Foundation/Foundation.h>
+#import "MRGArchitectLoader.h"
 
-#import "MRGArchitectExceptions.h" // Custom Architect exceptions
 
-@interface MRGArchitect : NSObject
-
-+ (instancetype)architectForClassName:(NSString *)className;
-
-- (id)init __attribute__((unavailable));
-- (BOOL)boolForKey:(NSString *)key;
-- (NSString *)stringForKey:(NSString *)key;
-- (NSInteger)integerForKey:(NSString *)key;
-- (CGFloat)floatForKey:(NSString *)key;
-- (UIColor *)colorForKey:(NSString *)key;
-- (UIEdgeInsets)edgeInsetsForKey:(NSString *)key;
-- (CGPoint)pointForKey:(NSString *)key;
-- (CGSize)sizeForKey:(NSString *)key;
-- (UIFont *)fontForKey:(NSString *)key;
-- (CGRect)rectForKey:(NSString *)key;
-
+@interface MRGArchitectJSONLoader : NSObject <MRGArchitectLoader>
 @end

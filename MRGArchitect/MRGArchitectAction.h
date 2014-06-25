@@ -27,22 +27,15 @@
 
 #import <Foundation/Foundation.h>
 
-#import "MRGArchitectExceptions.h" // Custom Architect exceptions
+@protocol MRGArchitectLoader;
 
-@interface MRGArchitect : NSObject
+@protocol MRGArchitectAction <NSObject>
 
-+ (instancetype)architectForClassName:(NSString *)className;
+@property (nonatomic, readonly) NSString *actionName;
 
-- (id)init __attribute__((unavailable));
-- (BOOL)boolForKey:(NSString *)key;
-- (NSString *)stringForKey:(NSString *)key;
-- (NSInteger)integerForKey:(NSString *)key;
-- (CGFloat)floatForKey:(NSString *)key;
-- (UIColor *)colorForKey:(NSString *)key;
-- (UIEdgeInsets)edgeInsetsForKey:(NSString *)key;
-- (CGPoint)pointForKey:(NSString *)key;
-- (CGSize)sizeForKey:(NSString *)key;
-- (UIFont *)fontForKey:(NSString *)key;
-- (CGRect)rectForKey:(NSString *)key;
+- (instancetype)init UNAVAILABLE_ATTRIBUTE;
+- (instancetype)initWithLoader:(id<MRGArchitectLoader>)loader;
+
+- (void)performActionWithValue:(id)actionValue onEntries:(NSMutableDictionary *)entriesToUpdate;
 
 @end

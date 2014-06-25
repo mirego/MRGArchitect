@@ -26,6 +26,8 @@
 // POSSIBILITY OF SUCH DAMAGE.
 
 #import "MRGArchitect.h"
+#import "MRGArchitectJSONLoader.h"
+#import "MRGArchitectImportAction.h"
 
 static UIColor *MRGUIColorWithHexString(NSString *hexString) {
     unsigned rgbValue = 0;
@@ -268,57 +270,15 @@ static UIColor *MRGUIColorWithHexString(NSString *hexString) {
 
 - (instancetype)initWithClassName:(NSString *)className {
     if (self = [super init]) {
-        _entries = [self loadEntriesWithClassName:className];
+        id<MRGArchitectLoader> loader = [[MRGArchitectJSONLoader alloc] init];
+        [loader registerAction:[MRGArchitectImportAction class]];
+
+        _entries = [loader loadEntriesWithClassName:className];
         _colorCache = [NSCache new];
         _fontCache = [NSCache new];
     }
     
     return self;
-}
-
-- (NSDictionary *)loadEntriesWithClassName:(NSString *)className {
-    NSMutableArray *paths = [[NSMutableArray alloc] init];
-    
-    NSString *path = [[[NSBundle bundleForClass:NSClassFromString(className)] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.json", className]];
-    if (path) [paths addObject:path];
-    
-    if (UIUserInterfaceIdiomPhone == UI_USER_INTERFACE_IDIOM()) {
-        NSString *path = nil;
-        if (568.0f == CGRectGetHeight([UIScreen mainScreen].bounds)) {
-            path = [[[NSBundle bundleForClass:NSClassFromString(className)] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-568h.json", className]];
-        } else {
-            path = [[[NSBundle bundleForClass:NSClassFromString(className)] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@~iphone.json", className]];
-        }
-        if (path) [paths addObject:path];
-    } else if (UIUserInterfaceIdiomPad == UI_USER_INTERFACE_IDIOM()) {
-        NSString *path = [[[NSBundle bundleForClass:NSClassFromString(className)] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@~ipad.json", className]];
-        if (path) [paths addObject:path];
-    }
-    
-    NSMutableDictionary *entries = [[NSMutableDictionary alloc] init];
-    for (NSString *path in paths) {
-        NSData *data = [NSData dataWithContentsOfFile:path];
-        NSError *error = nil;
-        NSDictionary *dictionary = [self dictionaryWithData:data error:&error];
-        if (error) {
-            @throw [NSException exceptionWithName:MRGArchitectParseErrorException reason:[error description] userInfo:[error userInfo]];
-        } else {
-            [entries addEntriesFromDictionary:dictionary];
-        }
-    }
-    
-    return [NSDictionary dictionaryWithDictionary:entries];
-}
-
-- (NSDictionary *)dictionaryWithData:(NSData *)data error:(NSError **)error {
-    if (!data) return nil;
-    
-    NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:error];
-    if (!error) {
-        return nil;
-    }
-    
-    return dictionary;
 }
 
 - (id)objectForKey:(NSString *)key {

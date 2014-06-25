@@ -1,0 +1,5 @@
+{
+    "testGlobalStringKey": "global",
+    "testGlobalOverrideStringKey1": "global 1",
+    "testGlobalOverrideStringKey2": "global 2"
+}
