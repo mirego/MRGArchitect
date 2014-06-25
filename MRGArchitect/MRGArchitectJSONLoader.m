@@ -76,6 +76,9 @@ static NSString *MRGArchitectActionPrefix = @"@";
         if (568.0f == CGRectGetHeight([UIScreen mainScreen].bounds)) {
             path = [[[NSBundle bundleForClass:NSClassFromString(className)] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-568h.json", className]];
             if (path) [paths addObject:path];
+            
+            path = [[[NSBundle bundleForClass:NSClassFromString(className)] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-568h~iphone.json", className]];
+            if (path) [paths addObject:path];
         }
     } else if (UIUserInterfaceIdiomPad == UI_USER_INTERFACE_IDIOM()) {
         NSString *path = [[[NSBundle bundleForClass:NSClassFromString(className)] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@~ipad.json", className]];
