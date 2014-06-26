@@ -25,24 +25,48 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-#import <Foundation/Foundation.h>
+#import "MRGArchitectImportAction.h"
+#import "MRGArchitectLoader.h"
+#import "MRGArchitectExceptions.h"
 
-#import "MRGArchitectExceptions.h" // Custom Architect exceptions
+@interface MRGArchitectImportAction ()
 
-@interface MRGArchitect : NSObject
+@property (nonatomic, weak) id <MRGArchitectLoader> loader;
 
-+ (instancetype)architectForClassName:(NSString *)className;
+@end
 
-- (id)init __attribute__((unavailable));
-- (BOOL)boolForKey:(NSString *)key;
-- (NSString *)stringForKey:(NSString *)key;
-- (NSInteger)integerForKey:(NSString *)key;
-- (CGFloat)floatForKey:(NSString *)key;
-- (UIColor *)colorForKey:(NSString *)key;
-- (UIEdgeInsets)edgeInsetsForKey:(NSString *)key;
-- (CGPoint)pointForKey:(NSString *)key;
-- (CGSize)sizeForKey:(NSString *)key;
-- (UIFont *)fontForKey:(NSString *)key;
-- (CGRect)rectForKey:(NSString *)key;
+@implementation MRGArchitectImportAction
+
+- (instancetype)initWithLoader:(id <MRGArchitectLoader>)loader
+{
+    if (self = [super init]) {
+        _loader = loader;
+    }
+    return self;
+}
+
+- (NSString *)actionName
+{
+    return @"imports";
+}
+
+- (void)performActionWithValue:(id)actionValue onEntries:(NSMutableDictionary *)entriesToUpdate
+{
+    if ([actionValue isKindOfClass:[NSArray class]]) {
+        NSArray *classNames = actionValue;
+
+        for (NSString* className in classNames) {
+            NSDictionary * loadedEntries = [self.loader loadEntriesWithClassName:className];
+            
+            NSMutableDictionary* updatedEntries = [NSMutableDictionary dictionaryWithDictionary:loadedEntries];
+            [updatedEntries addEntriesFromDictionary:entriesToUpdate];
+
+            [entriesToUpdate setDictionary:updatedEntries];
+        }
+    } else {
+        @throw [NSException exceptionWithName:MRGArchitectUnexpectedValueTypeException reason:@"Unexpected value type encountered for an action" userInfo:[NSDictionary dictionaryWithObject:self.actionName forKey:@"actionName"]];
+    }
+}
+
 
 @end

@@ -53,7 +53,7 @@ static const CGFloat accuracy = 0.01f;
     }
     @catch (NSException *exception) {
         XCTAssertNotNil(exception, @"Expecting an exception to be thrown for key: testParseError");
-        XCTAssertEqual(MRGArchitectParseErrorException, exception.name, @"Expecting the exception thrown to be named: MRGArchitectParseErrorException");
+        XCTAssertEqualObjects(MRGArchitectParseErrorException, exception.name, @"Expecting the exception thrown to be named: MRGArchitectParseErrorException");
     }
 }
 
@@ -259,6 +259,43 @@ static const CGFloat accuracy = 0.01f;
     @catch (NSException *exception) {
         XCTAssertNotNil(exception, @"Expecting an exception to be thrown for key: testNotQuiteRect");
         XCTAssertEqual(MRGArchitectUnexpectedValueTypeException, exception.name, @"Expecting the exception thrown to be named: MRGArchitectUnexpectedValueTypeException");
+    }
+}
+
+- (void)testImportGlobalKey {
+    NSString *value = [self.architect stringForKey:@"testGlobalStringKey"];
+    XCTAssertTrue([@"global" isEqualToString:value], @"Expecting the string value 'global' for the key: testGlobalStringKey");
+}
+
+- (void)testImportFirstLevelOverrideGlobalKey {
+    NSString *value = [self.architect stringForKey:@"testGlobalOverrideStringKey1"];
+    XCTAssertTrue([@"global 1 is hidden" isEqualToString:value], @"Expecting the string value 'global 1 is hidden' for the key: testGlobalOverrideStringKey1");
+}
+
+- (void)testImportSecondLevelOverrideGlobalKey {
+    NSString *value = [self.architect stringForKey:@"testGlobalOverrideStringKey2"];
+    XCTAssertTrue([@"global 2 is hidden" isEqualToString:value], @"Expecting the string value 'global 2 is hidden' for the key: testGlobalOverrideStringKey2");
+}
+
+- (void)testInvalidActionType {
+    MRGArchitect *architect = nil;
+    @try {
+        architect = [MRGArchitect architectForClassName:@"MRGArchitectTests_InvalidAction"];
+    }
+    @catch (NSException *exception) {
+        XCTAssertNotNil(exception, @"Expecting an exception to be thrown for key: testInvalidActionType");
+        XCTAssertEqualObjects(MRGArchitectUnexpectedActionTypeException, exception.name, @"Expecting the exception thrown to be named: MRGArchitectUnexpectedActionTypeException");
+    }
+}
+
+- (void)testInvalidImportActionValue {
+    MRGArchitect *architect = nil;
+    @try {
+        architect = [MRGArchitect architectForClassName:@"MRGArchitectTests_InvalidImportActionValue"];
+    }
+    @catch (NSException *exception) {
+        XCTAssertNotNil(exception, @"Expecting an exception to be thrown for key: testInvalidImportActionValue");
+        XCTAssertEqualObjects(MRGArchitectUnexpectedValueTypeException, exception.name, @"Expecting the exception thrown to be named: MRGArchitectUnexpectedValueTypeException");
     }
 }
 
