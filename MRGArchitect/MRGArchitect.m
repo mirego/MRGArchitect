@@ -72,6 +72,25 @@ static UIColor *MRGUIColorWithHexString(NSString *hexString) {
     return [object integerValue];
 }
 
+- (NSUInteger)unsignedIntegerForKey:(NSString *)key
+{
+    id object = [self objectForKey:key expectedClass:[NSNumber class]];
+    return [object unsignedIntegerValue];
+}
+
+- (int)intForKey:(NSString *)key
+{
+    id object = [self objectForKey:key expectedClass:[NSNumber class]];
+    return [object intValue];
+}
+
+- (unsigned int)unsignedIntForKey:(NSString *)key
+{
+    id object = [self objectForKey:key expectedClass:[NSNumber class]];
+    return [object unsignedIntValue];
+}
+
+
 - (CGFloat)floatForKey:(NSString *)key {
     id object = [self objectForKey:key expectedClass:[NSNumber class]];
     return [object floatValue];
