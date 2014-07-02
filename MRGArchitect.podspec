@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'MRGArchitect'
-  s.version  = '0.3.0'
+  s.version  = '0.3.1'
   s.license  = 'BSD 3-Clause'
   s.summary  = 'Static application configuration via JSON'
   s.homepage = 'http://open.mirego.com'
