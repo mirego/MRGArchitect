@@ -94,6 +94,54 @@ static const CGFloat accuracy = 0.01f;
     }
 }
 
+- (void)testUnsignedIntegerForKey {
+    NSUInteger value = [self.architect unsignedIntegerForKey:@"testUIntegerForKey"];
+    XCTAssertEqual(3, value, @"Expecting the unsigned integer value '3' for the key: testUIntegerForKey");
+}
+
+- (void)testNonUnsignedIntegerForKey {
+    NSUInteger value = 0;
+    @try {
+        value = [self.architect unsignedIntegerForKey:@"testNonUIntegerForKey"];
+    }
+    @catch (NSException *exception) {
+        XCTAssertNotNil(exception, @"Expecting an exception to be thrown for key: testNonUIntegerForKey");
+        XCTAssertEqual(MRGArchitectUnexpectedValueTypeException, exception.name, @"Expecting the exception thrown to be named: MRGArchitectUnexpectedValueTypeException");
+    }
+}
+
+- (void)testIntForKey {
+    int value = [self.architect intForKey:@"testIntForKey"];
+    XCTAssertEqual(3, value, @"Expecting the int value '3' for the key: testIntForKey");
+}
+
+- (void)testNonIntForKey {
+    int value = 0;
+    @try {
+        value = [self.architect intForKey:@"testNonIntForKey"];
+    }
+    @catch (NSException *exception) {
+        XCTAssertNotNil(exception, @"Expecting an exception to be thrown for key: testNonIntForKey");
+        XCTAssertEqual(MRGArchitectUnexpectedValueTypeException, exception.name, @"Expecting the exception thrown to be named: MRGArchitectUnexpectedValueTypeException");
+    }
+}
+
+- (void)testUnsignedIntForKey {
+    unsigned int value = [self.architect unsignedIntForKey:@"testUIntForKey"];
+    XCTAssertEqual(3, value, @"Expecting the unsigned int value '3' for the key: testUIntForKey");
+}
+
+- (void)testNonUnsignedIntForKey {
+    unsigned int value = 0;
+    @try {
+        value = [self.architect unsignedIntForKey:@"testNonUIntForKey"];
+    }
+    @catch (NSException *exception) {
+        XCTAssertNotNil(exception, @"Expecting an exception to be thrown for key: testNonUIntForKey");
+        XCTAssertEqual(MRGArchitectUnexpectedValueTypeException, exception.name, @"Expecting the exception thrown to be named: MRGArchitectUnexpectedValueTypeException");
+    }
+}
+
 - (void)testFloatForKey {
     CGFloat value = [self.architect floatForKey:@"testFloatForKey"];
     XCTAssertEqualWithAccuracy(3.141593, value, accuracy, @"Expecting the float value '3.141593' for key: testFloatForKey");

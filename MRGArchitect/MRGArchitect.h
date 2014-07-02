@@ -37,6 +37,9 @@
 - (BOOL)boolForKey:(NSString *)key;
 - (NSString *)stringForKey:(NSString *)key;
 - (NSInteger)integerForKey:(NSString *)key;
+- (NSUInteger)unsignedIntegerForKey:(NSString *)key;
+- (int)intForKey:(NSString *)key;
+- (unsigned int)unsignedIntForKey:(NSString *)key;
 - (CGFloat)floatForKey:(NSString *)key;
 - (UIColor *)colorForKey:(NSString *)key;
 - (UIEdgeInsets)edgeInsetsForKey:(NSString *)key;
