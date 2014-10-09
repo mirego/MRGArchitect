@@ -73,7 +73,7 @@ static NSString *MRGArchitectActionPrefix = @"@";
         path = [[[NSBundle bundleForClass:NSClassFromString(className)] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@~iphone.json", className]];
         if (path) [paths addObject:path];
         
-        if (568.0f == CGRectGetHeight([UIScreen mainScreen].bounds)) {
+        if (568.0f <= CGRectGetHeight([UIScreen mainScreen].bounds)) {
             path = [[[NSBundle bundleForClass:NSClassFromString(className)] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-568h.json", className]];
             if (path) [paths addObject:path];
             
