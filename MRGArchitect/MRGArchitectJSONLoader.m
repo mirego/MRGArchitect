@@ -80,6 +80,20 @@ static NSString *MRGArchitectActionPrefix = @"@";
             path = [[[NSBundle bundleForClass:NSClassFromString(className)] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-568h~iphone.json", className]];
             if (path) [paths addObject:path];
         }
+        if (667.0f <= CGRectGetHeight([UIScreen mainScreen].bounds)) {
+            path = [[[NSBundle bundleForClass:NSClassFromString(className)] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-667h.json", className]];
+            if (path) [paths addObject:path];
+
+            path = [[[NSBundle bundleForClass:NSClassFromString(className)] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-667h~iphone.json", className]];
+            if (path) [paths addObject:path];
+        }
+        if (736.0f <= CGRectGetHeight([UIScreen mainScreen].bounds)) {
+            path = [[[NSBundle bundleForClass:NSClassFromString(className)] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-736h.json", className]];
+            if (path) [paths addObject:path];
+
+            path = [[[NSBundle bundleForClass:NSClassFromString(className)] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-736h~iphone.json", className]];
+            if (path) [paths addObject:path];
+        }
     } else if (UIUserInterfaceIdiomPad == UI_USER_INTERFACE_IDIOM()) {
         NSString *path = [[[NSBundle bundleForClass:NSClassFromString(className)] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@~ipad.json", className]];
         if (path) [paths addObject:path];
