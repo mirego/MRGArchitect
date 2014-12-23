@@ -26,6 +26,7 @@
 		095CF59A18E5C31E004BAD57 /* MRGArchitectTests_Invalid.json in Resources */ = {isa = PBXBuildFile; fileRef = 095CF59918E5C31E004BAD57 /* MRGArchitectTests_Invalid.json */; };
 		095CF59B18E5C31E004BAD57 /* MRGArchitectTests_Invalid.json in Resources */ = {isa = PBXBuildFile; fileRef = 095CF59918E5C31E004BAD57 /* MRGArchitectTests_Invalid.json */; };
 		0993CDA118E5EEFA00585F02 /* MRGArchitectTests~iphone.json in Resources */ = {isa = PBXBuildFile; fileRef = 0993CDA018E5EEFA00585F02 /* MRGArchitectTests~iphone.json */; };
+		37023508453475EE44079BE2 /* libPods-MRGArchitectExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A667997516BAD312AA76BD89 /* libPods-MRGArchitectExampleTests.a */; };
 		9B9703142E34FC877CF98BB4 /* MRGArchitectImportAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B97030B09FE4890D1A33ED1 /* MRGArchitectImportAction.m */; };
 		9B970F10323707CEFC766D76 /* MRGArchitectJSONLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B970666B47547FFEE1A8EC3 /* MRGArchitectJSONLoader.m */; };
 		DC14C753195B523300C2349C /* MRGArchitectTestImport.json in Resources */ = {isa = PBXBuildFile; fileRef = 9B970CFC7B170BE1C75F360B /* MRGArchitectTestImport.json */; };
@@ -76,6 +77,10 @@
 		9B970BA79129F55E751CB0A6 /* MRGArchitectImportAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRGArchitectImportAction.h; sourceTree = "<group>"; };
 		9B970C8F1636A8269C017058 /* MRGArchitectExceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRGArchitectExceptions.h; sourceTree = "<group>"; };
 		9B970CFC7B170BE1C75F360B /* MRGArchitectTestImport.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MRGArchitectTestImport.json; sourceTree = "<group>"; };
+		A1B4E5861A49E50B00DD569F /* MRGArchitectJSONLoader+MRGArchitectJSONLoaderTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MRGArchitectJSONLoader+MRGArchitectJSONLoaderTests.h"; sourceTree = "<group>"; };
+		A667997516BAD312AA76BD89 /* libPods-MRGArchitectExampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MRGArchitectExampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA332174DAB2AE273128AF50 /* Pods-MRGArchitectExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MRGArchitectExampleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MRGArchitectExampleTests/Pods-MRGArchitectExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D771F831C030DE1ABEEAD04B /* Pods-MRGArchitectExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MRGArchitectExampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MRGArchitectExampleTests/Pods-MRGArchitectExampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		DC14C756195B5B3C00C2349C /* MRGArchitectTests_InvalidAction.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MRGArchitectTests_InvalidAction.json; sourceTree = "<group>"; };
 		DC14C757195B5B3C00C2349C /* MRGArchitectTests_InvalidImportActionValue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MRGArchitectTests_InvalidImportActionValue.json; sourceTree = "<group>"; };
 		DC14C75A195B5CB700C2349C /* MRGArchitectJSONLoaderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRGArchitectJSONLoaderTests.m; sourceTree = "<group>"; };
@@ -99,6 +104,7 @@
 				095CF57A18E5AD03004BAD57 /* XCTest.framework in Frameworks */,
 				095CF57C18E5AD03004BAD57 /* UIKit.framework in Frameworks */,
 				095CF57B18E5AD03004BAD57 /* Foundation.framework in Frameworks */,
+				37023508453475EE44079BE2 /* libPods-MRGArchitectExampleTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,6 +119,7 @@
 				095CF57F18E5AD03004BAD57 /* MRGArchitectExampleTests */,
 				095CF55F18E5AD03004BAD57 /* Frameworks */,
 				095CF55E18E5AD03004BAD57 /* Products */,
+				E5BDD24E2786FE88E5EC1ED4 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -132,6 +139,7 @@
 				095CF56218E5AD03004BAD57 /* CoreGraphics.framework */,
 				095CF56418E5AD03004BAD57 /* UIKit.framework */,
 				095CF57918E5AD03004BAD57 /* XCTest.framework */,
+				A667997516BAD312AA76BD89 /* libPods-MRGArchitectExampleTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -191,6 +199,7 @@
 				9B970A7EAA3AFBBB21CDBEB0 /* MRGArchitectAction.h */,
 				9B970666B47547FFEE1A8EC3 /* MRGArchitectJSONLoader.m */,
 				9B9701463692D1F9009C4D5B /* MRGArchitectJSONLoader.h */,
+				A1B4E5861A49E50B00DD569F /* MRGArchitectJSONLoader+MRGArchitectJSONLoaderTests.h */,
 				9B9708B399949C61F4FAE601 /* MRGArchitectLoader.h */,
 				9B97030B09FE4890D1A33ED1 /* MRGArchitectImportAction.m */,
 				9B970BA79129F55E751CB0A6 /* MRGArchitectImportAction.h */,
@@ -198,6 +207,15 @@
 			);
 			name = MRGArchitect;
 			path = ../MRGArchitect;
+			sourceTree = "<group>";
+		};
+		E5BDD24E2786FE88E5EC1ED4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BA332174DAB2AE273128AF50 /* Pods-MRGArchitectExampleTests.debug.xcconfig */,
+				D771F831C030DE1ABEEAD04B /* Pods-MRGArchitectExampleTests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,9 +242,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 095CF58C18E5AD03004BAD57 /* Build configuration list for PBXNativeTarget "MRGArchitectExampleTests" */;
 			buildPhases = (
+				54D0C22A7333D454649F9C9C /* Check Pods Manifest.lock */,
 				095CF57418E5AD03004BAD57 /* Sources */,
 				095CF57518E5AD03004BAD57 /* Frameworks */,
 				095CF57618E5AD03004BAD57 /* Resources */,
+				E07BFD02799E652D0F3AA4AF /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -300,6 +320,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		54D0C22A7333D454649F9C9C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E07BFD02799E652D0F3AA4AF /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MRGArchitectExampleTests/Pods-MRGArchitectExampleTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		095CF55918E5AD02004BAD57 /* Sources */ = {
@@ -452,6 +505,7 @@
 		};
 		095CF58D18E5AD03004BAD57 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BA332174DAB2AE273128AF50 /* Pods-MRGArchitectExampleTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MRGArchitectExample.app/MRGArchitectExample";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -474,6 +528,7 @@
 		};
 		095CF58E18E5AD03004BAD57 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D771F831C030DE1ABEEAD04B /* Pods-MRGArchitectExampleTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MRGArchitectExample.app/MRGArchitectExample";
 				FRAMEWORK_SEARCH_PATHS = (

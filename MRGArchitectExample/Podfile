@@ -1,0 +1,3 @@
+target 'MRGArchitectExampleTests', :exclusive => true do
+  pod 'OCMock'
+end

@@ -7,11 +7,13 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "MRGArchitectJSONLoader.h"
+#import <OCMock/OCMock.h>
+#import "MRGArchitectJSONLoader+MRGArchitectJSONLoaderTests.h"
 #import "MRGArchitect.h"
+#import "MRGArchitectImportAction.h"
 
 @interface MRGArchitectJSONLoaderTests : XCTestCase
-
+@property id mock;
 @end
 
 @implementation MRGArchitectJSONLoaderTests
@@ -19,12 +21,17 @@
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    MRGArchitectJSONLoader *loader = [[MRGArchitectJSONLoader alloc] init];
+    [loader registerAction:[MRGArchitectImportAction class]];
+    _mock = OCMPartialMock(loader);
+
+    OCMStub([_mock pathPrefixWithClassName:[OCMArg any]]).andReturn(@"");
 }
 
 - (void)tearDown
 {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+    OCMVerifyAll(_mock);
+    _mock = nil;
     [super tearDown];
 }
 
@@ -40,6 +47,60 @@
         XCTAssertNotNil(exception, @"Expecting an exception to be thrown for key: testInvalidActionRegistration");
         XCTAssertEqualObjects(MRGArchitectInvalidActionClassRegistered, exception.name, @"Expecting the exception thrown to be named: MRGArchitectInvalidActionClassRegistered");
     }
+}
+
+- (void)testLoadEntriesForIPad
+{
+    OCMStub([_mock userInterfaceIdiom]).andReturn(UIUserInterfaceIdiomPad);
+    OCMExpect(([_mock loadEntriesWithPaths:[OCMArg checkWithBlock:^BOOL(NSMutableArray *paths) {
+        return [paths isEqualToArray:@[@"class.json", @"class~ipad.json"]];
+    }]]));
+    
+    [_mock loadEntriesWithClassName:@"class"];
+}
+
+- (void)testLoadEntriesForIPhone
+{
+    OCMStub([_mock userInterfaceIdiom]).andReturn(UIUserInterfaceIdiomPhone);
+    OCMStub([_mock screenHeight]).andReturn(480.0f);
+    OCMExpect(([_mock loadEntriesWithPaths:[OCMArg checkWithBlock:^BOOL(NSMutableArray *paths) {
+        return [paths isEqualToArray:@[@"class.json", @"class~iphone.json"]];
+    }]]));
+    
+    [_mock loadEntriesWithClassName:@"class"];
+}
+
+- (void)testLoadEntriesForIPhone5
+{
+    OCMStub([_mock userInterfaceIdiom]).andReturn(UIUserInterfaceIdiomPhone);
+    OCMStub([_mock screenHeight]).andReturn(568.0f);
+    OCMExpect(([_mock loadEntriesWithPaths:[OCMArg checkWithBlock:^BOOL(NSMutableArray *paths) {
+        return [paths isEqualToArray:@[@"class.json", @"class~iphone.json", @"class-568h.json", @"class-568h~iphone.json"]];
+    }]]));
+    
+    [_mock loadEntriesWithClassName:@"class"];
+}
+
+- (void)testLoadEntriesForIPhone6
+{
+    OCMStub([_mock userInterfaceIdiom]).andReturn(UIUserInterfaceIdiomPhone);
+    OCMStub([_mock screenHeight]).andReturn(667.0f);
+    OCMExpect(([_mock loadEntriesWithPaths:[OCMArg checkWithBlock:^BOOL(NSMutableArray *paths) {
+        return [paths isEqualToArray:@[@"class.json", @"class~iphone.json", @"class-568h.json", @"class-568h~iphone.json", @"class-667h.json", @"class-667h~iphone.json"]];
+    }]]));
+    
+    [_mock loadEntriesWithClassName:@"class"];
+}
+
+- (void)testLoadEntriesForIPhone6Plus
+{
+    OCMStub([_mock userInterfaceIdiom]).andReturn(UIUserInterfaceIdiomPhone);
+    OCMStub([_mock screenHeight]).andReturn(736.0f);
+    OCMExpect(([_mock loadEntriesWithPaths:[OCMArg checkWithBlock:^BOOL(NSMutableArray *paths) {
+        return [paths isEqualToArray:@[@"class.json", @"class~iphone.json", @"class-568h.json", @"class-568h~iphone.json", @"class-667h.json", @"class-667h~iphone.json", @"class-736h.json", @"class-736h~iphone.json"]];
+    }]]));
+    
+    [_mock loadEntriesWithClassName:@"class"];
 }
 
 @end
