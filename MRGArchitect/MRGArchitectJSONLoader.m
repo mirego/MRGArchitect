@@ -60,45 +60,66 @@ static NSString *MRGArchitectActionPrefix = @"@";
     [self.registeredActions addObject:actionToRegisterInstance];
 }
 
-
-- (NSDictionary *)loadEntriesWithClassName:(NSString *)className {
+- (NSDictionary *)loadEntriesWithClassName:(NSString *)className
+{
     NSMutableArray *paths = [[NSMutableArray alloc] init];
 
-    NSString *path = [[[NSBundle bundleForClass:NSClassFromString(className)] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.json", className]];
+    NSString *path = [[self pathPrefixWithClassName:className] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.json", className]];
     if (path) [paths addObject:path];
 
-    if (UIUserInterfaceIdiomPhone == UI_USER_INTERFACE_IDIOM()) {
+    if (UIUserInterfaceIdiomPhone == [self userInterfaceIdiom]) {
         NSString *path = nil;
+        float screenHeight = [self screenHeight];
 
-        path = [[[NSBundle bundleForClass:NSClassFromString(className)] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@~iphone.json", className]];
+        path = [[self pathPrefixWithClassName:className]stringByAppendingPathComponent:[NSString stringWithFormat:@"%@~iphone.json", className]];
         if (path) [paths addObject:path];
         
-        if (568.0f <= CGRectGetHeight([UIScreen mainScreen].bounds)) {
-            path = [[[NSBundle bundleForClass:NSClassFromString(className)] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-568h.json", className]];
+        if (568.0f <= screenHeight) {
+            path = [[self pathPrefixWithClassName:className] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-568h.json", className]];
             if (path) [paths addObject:path];
             
-            path = [[[NSBundle bundleForClass:NSClassFromString(className)] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-568h~iphone.json", className]];
+            path = [[self pathPrefixWithClassName:className] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-568h~iphone.json", className]];
             if (path) [paths addObject:path];
         }
-        if (667.0f <= CGRectGetHeight([UIScreen mainScreen].bounds)) {
-            path = [[[NSBundle bundleForClass:NSClassFromString(className)] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-667h.json", className]];
+        if (667.0f <= screenHeight) {
+            path = [[self pathPrefixWithClassName:className] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-667h.json", className]];
             if (path) [paths addObject:path];
 
-            path = [[[NSBundle bundleForClass:NSClassFromString(className)] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-667h~iphone.json", className]];
+            path = [[self pathPrefixWithClassName:className] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-667h~iphone.json", className]];
             if (path) [paths addObject:path];
         }
-        if (736.0f <= CGRectGetHeight([UIScreen mainScreen].bounds)) {
-            path = [[[NSBundle bundleForClass:NSClassFromString(className)] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-736h.json", className]];
+        if (736.0f <= screenHeight) {
+            path = [[self pathPrefixWithClassName:className] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-736h.json", className]];
             if (path) [paths addObject:path];
 
-            path = [[[NSBundle bundleForClass:NSClassFromString(className)] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-736h~iphone.json", className]];
+            path = [[self pathPrefixWithClassName:className] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-736h~iphone.json", className]];
             if (path) [paths addObject:path];
         }
-    } else if (UIUserInterfaceIdiomPad == UI_USER_INTERFACE_IDIOM()) {
-        NSString *path = [[[NSBundle bundleForClass:NSClassFromString(className)] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@~ipad.json", className]];
+    } else if (UIUserInterfaceIdiomPad == [self userInterfaceIdiom]) {
+        NSString *path = [[self pathPrefixWithClassName:className] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@~ipad.json", className]];
         if (path) [paths addObject:path];
     }
 
+    return [self loadEntriesWithPaths:paths];
+}
+
+- (NSString *)pathPrefixWithClassName:(NSString *)className
+{
+    return [[NSBundle bundleForClass:NSClassFromString(className)] resourcePath];
+}
+
+- (float)screenHeight
+{
+    return CGRectGetHeight([UIScreen mainScreen].bounds);
+}
+
+- (UIUserInterfaceIdiom)userInterfaceIdiom
+{
+    return UI_USER_INTERFACE_IDIOM();
+}
+
+- (NSDictionary *)loadEntriesWithPaths:(NSMutableArray *)paths
+{
     NSMutableDictionary *entries = [[NSMutableDictionary alloc] init];
     for (NSString *path in paths) {
         NSData *data = [NSData dataWithContentsOfFile:path];

@@ -22,3 +22,6 @@ DerivedData
 # AppCode
 .idea/*
 .idea/
+
+# CocoaPods
+Pods
