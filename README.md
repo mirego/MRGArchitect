@@ -1,8 +1,172 @@
 # MRGArchitect
 
+## How to use it
+
+### First things first
+
+- Add `MRGArchitect` in your `Podfile`
+- Run `pod install` in your terminal at the root of your project
+
+### Simple way
+
+Say you want properties for your `LoginView`. Create a `LoginView.json` file and add properties for your view inside a JSON object.
+
+Instantiate your `MRGArchitect` in your `LoginView.m` and keep it in a member variable like so :
+```objc
+  self.architect = [MRGArchitect architectForClassName:NSStringFromClass(self.class)];
+```
+
+From now on you are able to retrieve properties from your JSON file with `MRGArchitect`’s helpers like so :
+```objc
+  // returns BOOL
+  [self.architect boolForKey:@"boolKey"];
+
+  // returns NSString *
+  [self.architect stringForKey:@"stringKey"];
+
+  // returns NSInteger
+  [self.architect integerForKey:@"integerKey"];
+
+  // returns NSUInteger
+  [self.architect unsignedIntegerForKey:@"unsignedIntegerKey"];
+
+  // returns int
+  [self.architect intForKey:@"intKey"];
+
+  // returns unsigned int
+  [self.architect unsignedIntForKey:@"unsignedIntKey"];
+
+  // returns CGFloat
+  [self.architect floatForKey:@"floatKey"];
+
+  // returns UIColor *
+  [self.architect colorForKey:@"colorKey"];
+
+  // returns UIEdgeInsets
+  [self.architect edgeInsetsForKey:@"edgeInsetsKey"];
+
+  // returns CGPoint
+  [self.architect pointForKey:@"pointKey"];
+
+  // returns CGSize
+  [self.architect sizeForKey:@"sizeKey"];
+
+  // returns UIFont *
+  [self.architect fontForKey:@"fontKey"];
+
+  // returns CGRect
+  [self.architect rectForKey:@"rectKey"];
+```
+
+### Perfectionist way
+
+Say you also have properties that apply to all of your views. Instead of having one instance of `MRGArchitect` specific for your view and another instance for your generic properties, use the importation feature.
+
+In your JSON file, import another file like so :
+```json
+{
+  "@imports": [
+    "FileNameToImportWithoutExtension"
+  ]
+}
+```
+
+### Backstage secrets
+
+#### Understanding properties compilation
+
+`MRGArchitect` loads more than one file (if it finds more than one) for a given class name.
+
+Here is the order it will search for files on iPhone :
+- `<name>.json`
+- `<name>~iphone.json`
+- `<name>-568h.json`
+- `<name>-568h~iphone.json`
+- `<name>-667h.json`
+- `<name>-667h~iphone.json`
+- `<name>-736h.json`
+- `<name>-736h~iphone.json`
+
+On iPad :
+- `<name>.json`
+- `<name>~ipad.json`
+
+These are the order the files will be loaded and so the order the properties will be compiled. For example :
+- for a given class name, the property "foo" of `<name>.json` will be overriden by the property "foo" of `<name>~iphone.json`, on iPhone,
+- and the property "bar" of `<name>.json` will be overriden by the property "bar" of `<name>~ipad.json`, on iPad.
+
+Of course, it only applies if these files exist.
+
+#### Defining complex properties
+
+Colors :
+```json
+"colorKey": "#FF0000"
+```
+
+Edge Insets :
+```json
+"edgeInsetsKey": {
+  "top": 1.0,
+  "left": 2.0,
+  "bottom": 3.0,
+  "right": 4.0
+}
+```
+OR
+```json
+"stringEdgeInsetsKey": "{4.0, 3.0, 2.0, 1.0}"
+```
+
+Points :
+```json
+"pointKey": {
+  "x": 1.0,
+  "y": 2.0
+}
+```
+OR
+```json
+"stringPointKey": "{2.0, 1.0}"
+```
+
+Sizes :
+```json
+"sizeKey": {
+  "width": 10.0,
+  "height": 20.0
+}
+```
+OR
+```json
+"stringSizeKey": "{20.0, 10.0}"
+```
+
+Fonts :
+```json
+"fontKey": {
+  "name": "HelveticaNeue",
+  "size": 15.0
+}
+```
+
+Rects :
+```json
+"rectKey": {
+  "origin": {
+    "x": 10.0,
+    "y": 10.0
+  },
+  "size": {
+    "width": 64.0,
+    "height": 64.0
+  }
+}
+```
+
 ## License
 
-`MRGArchitect` is © 2014 [Mirego](http://www.mirego.com) and may be freely distributed under the [New BSD license](http://opensource.org/licenses/BSD-3-Clause).  See the [`LICENSE.md`](https://github.com/mirego/MRGArchitect/blob/master/LICENSE.md) file.
+`MRGArchitect` is © 2015 [Mirego](http://www.mirego.com) and may be freely distributed under the [New BSD license](http://opensource.org/licenses/BSD-3-Clause).  See the [`LICENSE.md`](https://github.com/mirego/MRGArchitect/blob/master/LICENSE.md) file.
 
 ## About Mirego
 
