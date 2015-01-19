@@ -46,16 +46,16 @@ static UIColor *MRGUIColorWithHexString(NSString *hexString) {
 @implementation MRGArchitect
 
 + (instancetype)architectForClassName:(NSString *)className {
-    static NSMutableDictionary *classCache;
+    static NSMutableDictionary *architectCache;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        classCache = [[NSMutableDictionary alloc] init];
+        architectCache = [[NSMutableDictionary alloc] init];
     });
 
-    MRGArchitect *architect = classCache[className];
+    MRGArchitect *architect = architectCache[className];
     if (architect == nil) {
         architect = [[MRGArchitect alloc] initWithClassName:className];
-        classCache[className] = architect;
+        architectCache[className] = architect;
     }
 
     return architect;
