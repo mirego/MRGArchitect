@@ -26,8 +26,15 @@
 // POSSIBILITY OF SUCH DAMAGE.
 
 #import <Foundation/Foundation.h>
-#import "MRGArchitectAction.h"
 
+/*  This is a helper class that provides data formatted in a way that facilitate
+    CAGradientLayer and CGGradient usage.
+ 
+    'colors' property contains CGColorRefs.
+    'locations' property contains float NSNumbers (relative location between 0.0 and 1.0) .
+*/
 
-@interface MRGArchitectImportAction : NSObject <MRGArchitectAction>
+@interface MRGArchitectGradient : NSObject
+@property (nonatomic) NSArray *colors;
+@property (nonatomic) NSArray *locations;
 @end

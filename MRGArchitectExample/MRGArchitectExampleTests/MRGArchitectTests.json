@@ -56,6 +56,22 @@
             "height": 64.0
         }
     },
+    "testStringRectForKey": "{{10.0, 20.0}, {64.0, 80.0}}",
     "testNotQuiteRect": "testNotQuiteRect",
+    "testGradientForKey": [
+                           {
+                           "location": 0.0,
+                           "color": "#FFFFFF"
+                           },
+                           {
+                           "location": 0.3,
+                           "color": "#878787"
+                           },
+                           {
+                           "location": 1.0,
+                           "color": "#000000"
+                           }
+                           ],
+    "testNotQuiteGradient" : "testNotQuiteGradient",
     "testGlobalOverrideStringKey1": "global 1 is hidden"
 }
