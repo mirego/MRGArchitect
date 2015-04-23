@@ -1,4 +1,4 @@
-// Copyright (c) 2014, Mirego
+// Copyright (c) 2015, Mirego
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -299,6 +299,12 @@ static const CGFloat accuracy = 0.01f;
     XCTAssertTrue(CGRectEqualToRect(expectedValue, value), @"Expecting the CGRect value '{{10.0, 10.0}, {64.0, 64.0}}' for key: testRectForKey");
 }
 
+- (void)testStringRectForKey {
+    CGRect value = [self.architect rectForKey:@"testStringRectForKey"];
+    CGRect expectedValue = CGRectMake(10.0, 20.0, 64.0, 80.0);
+    XCTAssertTrue(CGRectEqualToRect(expectedValue, value), @"Expecting the CGRect value '{{10.0, 10.0}, {64.0, 64.0}}' for key: testRectForKey");
+}
+
 - (void)testNotQuiteRect {
     CGRect value;
     @try {
@@ -306,6 +312,28 @@ static const CGFloat accuracy = 0.01f;
     }
     @catch (NSException *exception) {
         XCTAssertNotNil(exception, @"Expecting an exception to be thrown for key: testNotQuiteRect");
+        XCTAssertEqual(MRGArchitectUnexpectedValueTypeException, exception.name, @"Expecting the exception thrown to be named: MRGArchitectUnexpectedValueTypeException");
+    }
+}
+
+- (void)testGradientForKey {
+    MRGArchitectGradient *gradient = [self.architect gradientForKey:@"testGradientForKey"];
+    NSArray *colors = @[(id)[UIColor colorWithRed:1 green:1 blue:1 alpha:1].CGColor,
+                        (id)[UIColor colorWithRed:135/255.0f green:135/255.0f blue:135/255.0f alpha:1].CGColor,
+                        (id)[UIColor colorWithRed:0 green:0 blue:0 alpha:2].CGColor];
+    NSArray *locations = @[@(0.0f), @(0.3f), @(1.0)];
+    XCTAssertTrue(gradient.colors.count == 3 && gradient.locations.count == 3);
+    XCTAssertTrue([gradient.colors isEqualToArray:colors]);
+    XCTAssertTrue([gradient.locations isEqualToArray:locations]);
+}
+
+- (void)testNotQuiteGradient {
+    MRGArchitectGradient *gradient;
+    @try {
+        gradient = [self.architect gradientForKey:@"testNotQuiteGradient"];
+    }
+    @catch (NSException *exception) {
+        XCTAssertNotNil(exception, @"Expecting an exception to be thrown for key: testNotQuiteGradient");
         XCTAssertEqual(MRGArchitectUnexpectedValueTypeException, exception.name, @"Expecting the exception thrown to be named: MRGArchitectUnexpectedValueTypeException");
     }
 }

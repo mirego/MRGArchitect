@@ -1,4 +1,4 @@
-// Copyright (c) 2014, Mirego
+// Copyright (c) 2015, Mirego
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -101,18 +101,14 @@ static UIColor *MRGUIColorWithHexString(NSString *hexString) {
     return [object unsignedIntValue];
 }
 
-
 - (CGFloat)floatForKey:(NSString *)key {
     id object = [self objectForKey:key expectedClass:[NSNumber class]];
     return [object floatValue];
 }
 
 - (UIColor *)colorForKey:(NSString *)key {
-    UIColor *cachedColor = [self.colorCache objectForKey:@"key"];
-    if (nil != cachedColor) return cachedColor;
-    
     NSString *hexString = [self stringForKey:key];
-    return MRGUIColorWithHexString(hexString);
+    return [self colorForHexString:hexString];
 }
 
 - (UIEdgeInsets)edgeInsetsForKey:(NSString *)key {
@@ -213,9 +209,6 @@ static UIColor *MRGUIColorWithHexString(NSString *hexString) {
 }
 
 - (UIFont *)fontForKey:(NSString *)key {
-    UIFont *cachedFont = [self.fontCache objectForKey:key];
-    if (nil != cachedFont) return cachedFont;
-    
     id object = [self objectForKey:key];
     if ([object isKindOfClass:[NSDictionary class]]) {
         NSDictionary *dictionary = (NSDictionary *)object;
@@ -233,8 +226,13 @@ static UIColor *MRGUIColorWithHexString(NSString *hexString) {
                 size = [obj floatValue];
             }
         }
+        
+        NSString *fontKey = [NSString stringWithFormat:@"%@-%.2f", name, size];
+        UIFont *cachedFont = [self.fontCache objectForKey:fontKey];
+        if (nil != cachedFont) return cachedFont;
+        
         UIFont *font = [UIFont fontWithName:name size:size];
-        [self.fontCache setObject:font forKey:key];
+        [self.fontCache setObject:font forKey:fontKey];
         return font;
     } else {
         NSString *reason = [NSString stringWithFormat:@"Unexpected value type for key '%@'", key];
@@ -289,6 +287,41 @@ static UIColor *MRGUIColorWithHexString(NSString *hexString) {
             }
         }
         return CGRectMake(origin.x, origin.y, size.width, size.height);
+    } else if ([object isKindOfClass:[NSString class]]) {
+        return CGRectFromString(object);
+    } else {
+        NSString *reason = [NSString stringWithFormat:@"Unexpected value type for key '%@'", key];
+        @throw [NSException exceptionWithName:MRGArchitectUnexpectedValueTypeException reason:reason userInfo:nil];
+    }
+}
+
+- (MRGArchitectGradient *)gradientForKey:(NSString *)key {
+    id object = [self objectForKey:key];
+    if ([object isKindOfClass:[NSArray class]]) {
+        NSMutableArray *colors = [NSMutableArray arrayWithCapacity:[object count]];
+        NSMutableArray *locations = [NSMutableArray arrayWithCapacity:[object count]];
+        
+        for (id elementObj in object) {
+            if ([elementObj isKindOfClass:[NSDictionary class]]) {
+                id hexString = [elementObj objectForKey:@"color"];
+                if ([hexString isKindOfClass:[NSString class]]) {
+                    UIColor *color = [self colorForHexString:hexString];
+                    CGFloat location = 0.0f;
+                    
+                    id locationNumber = [elementObj objectForKey:@"location"];
+                    if ([locationNumber isKindOfClass:[NSNumber class]]) {
+                        location = [locationNumber floatValue];
+                    }
+                    [colors addObject:(id)color.CGColor];
+                    [locations addObject:@(location)];
+                }
+            }
+        }
+        
+        MRGArchitectGradient *gradient = [MRGArchitectGradient new];
+        gradient.colors = [colors copy];
+        gradient.locations = [locations copy];
+        return gradient;
     } else {
         NSString *reason = [NSString stringWithFormat:@"Unexpected value type for key '%@'", key];
         @throw [NSException exceptionWithName:MRGArchitectUnexpectedValueTypeException reason:reason userInfo:nil];
@@ -328,6 +361,15 @@ static UIColor *MRGUIColorWithHexString(NSString *hexString) {
     }
     
     return object;
+}
+
+- (UIColor *)colorForHexString:(NSString *)hexString {
+    UIColor *cachedColor = [self.colorCache objectForKey:hexString];
+    if (nil != cachedColor) return cachedColor;
+    
+    UIColor *color = MRGUIColorWithHexString(hexString);
+    [self.colorCache setObject:color forKey:hexString];
+    return color;
 }
 
 

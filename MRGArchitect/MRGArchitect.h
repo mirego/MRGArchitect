@@ -1,4 +1,4 @@
-// Copyright (c) 2014, Mirego
+// Copyright (c) 2015, Mirego
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -28,6 +28,7 @@
 #import <Foundation/Foundation.h>
 
 #import "MRGArchitectExceptions.h" // Custom Architect exceptions
+#import "MRGArchitectGradient.h"
 
 @interface MRGArchitect : NSObject
 
@@ -47,5 +48,6 @@
 - (CGSize)sizeForKey:(NSString *)key;
 - (UIFont *)fontForKey:(NSString *)key;
 - (CGRect)rectForKey:(NSString *)key;
+- (MRGArchitectGradient *)gradientForKey:(NSString *)key;
 
 @end

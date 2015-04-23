@@ -27,6 +27,7 @@
 		095CF59B18E5C31E004BAD57 /* MRGArchitectTests_Invalid.json in Resources */ = {isa = PBXBuildFile; fileRef = 095CF59918E5C31E004BAD57 /* MRGArchitectTests_Invalid.json */; };
 		0993CDA118E5EEFA00585F02 /* MRGArchitectTests~iphone.json in Resources */ = {isa = PBXBuildFile; fileRef = 0993CDA018E5EEFA00585F02 /* MRGArchitectTests~iphone.json */; };
 		37023508453475EE44079BE2 /* libPods-MRGArchitectExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A667997516BAD312AA76BD89 /* libPods-MRGArchitectExampleTests.a */; };
+		4589541A1AE84D4D001ADEA2 /* MRGArchitectGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 458954191AE84D4D001ADEA2 /* MRGArchitectGradient.m */; };
 		9B9703142E34FC877CF98BB4 /* MRGArchitectImportAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B97030B09FE4890D1A33ED1 /* MRGArchitectImportAction.m */; };
 		9B970F10323707CEFC766D76 /* MRGArchitectJSONLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B970666B47547FFEE1A8EC3 /* MRGArchitectJSONLoader.m */; };
 		DC14C753195B523300C2349C /* MRGArchitectTestImport.json in Resources */ = {isa = PBXBuildFile; fileRef = 9B970CFC7B170BE1C75F360B /* MRGArchitectTestImport.json */; };
@@ -54,36 +55,38 @@
 		095CF56418E5AD03004BAD57 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		095CF56818E5AD03004BAD57 /* MRGArchitectExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MRGArchitectExample-Info.plist"; sourceTree = "<group>"; };
 		095CF56A18E5AD03004BAD57 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		095CF56C18E5AD03004BAD57 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		095CF56E18E5AD03004BAD57 /* MRGArchitectExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MRGArchitectExample-Prefix.pch"; sourceTree = "<group>"; };
-		095CF56F18E5AD03004BAD57 /* MRGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MRGAppDelegate.h; sourceTree = "<group>"; };
-		095CF57018E5AD03004BAD57 /* MRGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MRGAppDelegate.m; sourceTree = "<group>"; };
+		095CF56C18E5AD03004BAD57 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = main.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		095CF56E18E5AD03004BAD57 /* MRGArchitectExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "MRGArchitectExample-Prefix.pch"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		095CF56F18E5AD03004BAD57 /* MRGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MRGAppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		095CF57018E5AD03004BAD57 /* MRGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MRGAppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		095CF57218E5AD03004BAD57 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		095CF57818E5AD03004BAD57 /* MRGArchitectExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MRGArchitectExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		095CF57918E5AD03004BAD57 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		095CF58118E5AD03004BAD57 /* MRGArchitectExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MRGArchitectExampleTests-Info.plist"; sourceTree = "<group>"; };
 		095CF58318E5AD03004BAD57 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		095CF59018E5AD0A004BAD57 /* MRGArchitect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRGArchitect.h; sourceTree = "<group>"; };
-		095CF59118E5AD0A004BAD57 /* MRGArchitect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRGArchitect.m; sourceTree = "<group>"; };
-		095CF59418E5AD90004BAD57 /* MRGArchitectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRGArchitectTests.m; sourceTree = "<group>"; };
+		095CF59018E5AD0A004BAD57 /* MRGArchitect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MRGArchitect.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		095CF59118E5AD0A004BAD57 /* MRGArchitect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MRGArchitect.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		095CF59418E5AD90004BAD57 /* MRGArchitectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MRGArchitectTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		095CF59618E5ADA4004BAD57 /* MRGArchitectTests.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MRGArchitectTests.json; sourceTree = "<group>"; };
 		095CF59918E5C31E004BAD57 /* MRGArchitectTests_Invalid.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MRGArchitectTests_Invalid.json; sourceTree = "<group>"; };
 		0993CDA018E5EEFA00585F02 /* MRGArchitectTests~iphone.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "MRGArchitectTests~iphone.json"; sourceTree = "<group>"; };
-		9B9701463692D1F9009C4D5B /* MRGArchitectJSONLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRGArchitectJSONLoader.h; sourceTree = "<group>"; };
-		9B97030B09FE4890D1A33ED1 /* MRGArchitectImportAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRGArchitectImportAction.m; sourceTree = "<group>"; };
-		9B970666B47547FFEE1A8EC3 /* MRGArchitectJSONLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRGArchitectJSONLoader.m; sourceTree = "<group>"; };
-		9B9708B399949C61F4FAE601 /* MRGArchitectLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRGArchitectLoader.h; sourceTree = "<group>"; };
-		9B970A7EAA3AFBBB21CDBEB0 /* MRGArchitectAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRGArchitectAction.h; sourceTree = "<group>"; };
-		9B970BA79129F55E751CB0A6 /* MRGArchitectImportAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRGArchitectImportAction.h; sourceTree = "<group>"; };
-		9B970C8F1636A8269C017058 /* MRGArchitectExceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRGArchitectExceptions.h; sourceTree = "<group>"; };
+		458954181AE84D4D001ADEA2 /* MRGArchitectGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRGArchitectGradient.h; sourceTree = "<group>"; };
+		458954191AE84D4D001ADEA2 /* MRGArchitectGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRGArchitectGradient.m; sourceTree = "<group>"; };
+		9B9701463692D1F9009C4D5B /* MRGArchitectJSONLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MRGArchitectJSONLoader.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		9B97030B09FE4890D1A33ED1 /* MRGArchitectImportAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MRGArchitectImportAction.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		9B970666B47547FFEE1A8EC3 /* MRGArchitectJSONLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MRGArchitectJSONLoader.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		9B9708B399949C61F4FAE601 /* MRGArchitectLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MRGArchitectLoader.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		9B970A7EAA3AFBBB21CDBEB0 /* MRGArchitectAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MRGArchitectAction.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		9B970BA79129F55E751CB0A6 /* MRGArchitectImportAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MRGArchitectImportAction.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		9B970C8F1636A8269C017058 /* MRGArchitectExceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MRGArchitectExceptions.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		9B970CFC7B170BE1C75F360B /* MRGArchitectTestImport.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MRGArchitectTestImport.json; sourceTree = "<group>"; };
-		A1B4E5861A49E50B00DD569F /* MRGArchitectJSONLoader+MRGArchitectJSONLoaderTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MRGArchitectJSONLoader+MRGArchitectJSONLoaderTests.h"; sourceTree = "<group>"; };
+		A1B4E5861A49E50B00DD569F /* MRGArchitectJSONLoader+MRGArchitectJSONLoaderTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "MRGArchitectJSONLoader+MRGArchitectJSONLoaderTests.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		A667997516BAD312AA76BD89 /* libPods-MRGArchitectExampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MRGArchitectExampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA332174DAB2AE273128AF50 /* Pods-MRGArchitectExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MRGArchitectExampleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MRGArchitectExampleTests/Pods-MRGArchitectExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D771F831C030DE1ABEEAD04B /* Pods-MRGArchitectExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MRGArchitectExampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MRGArchitectExampleTests/Pods-MRGArchitectExampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		DC14C756195B5B3C00C2349C /* MRGArchitectTests_InvalidAction.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MRGArchitectTests_InvalidAction.json; sourceTree = "<group>"; };
 		DC14C757195B5B3C00C2349C /* MRGArchitectTests_InvalidImportActionValue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MRGArchitectTests_InvalidImportActionValue.json; sourceTree = "<group>"; };
-		DC14C75A195B5CB700C2349C /* MRGArchitectJSONLoaderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRGArchitectJSONLoaderTests.m; sourceTree = "<group>"; };
+		DC14C75A195B5CB700C2349C /* MRGArchitectJSONLoaderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MRGArchitectJSONLoaderTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,13 +200,15 @@
 				095CF59018E5AD0A004BAD57 /* MRGArchitect.h */,
 				095CF59118E5AD0A004BAD57 /* MRGArchitect.m */,
 				9B970A7EAA3AFBBB21CDBEB0 /* MRGArchitectAction.h */,
-				9B970666B47547FFEE1A8EC3 /* MRGArchitectJSONLoader.m */,
+				9B970C8F1636A8269C017058 /* MRGArchitectExceptions.h */,
+				458954181AE84D4D001ADEA2 /* MRGArchitectGradient.h */,
+				458954191AE84D4D001ADEA2 /* MRGArchitectGradient.m */,
+				9B970BA79129F55E751CB0A6 /* MRGArchitectImportAction.h */,
+				9B97030B09FE4890D1A33ED1 /* MRGArchitectImportAction.m */,
 				9B9701463692D1F9009C4D5B /* MRGArchitectJSONLoader.h */,
+				9B970666B47547FFEE1A8EC3 /* MRGArchitectJSONLoader.m */,
 				A1B4E5861A49E50B00DD569F /* MRGArchitectJSONLoader+MRGArchitectJSONLoaderTests.h */,
 				9B9708B399949C61F4FAE601 /* MRGArchitectLoader.h */,
-				9B97030B09FE4890D1A33ED1 /* MRGArchitectImportAction.m */,
-				9B970BA79129F55E751CB0A6 /* MRGArchitectImportAction.h */,
-				9B970C8F1636A8269C017058 /* MRGArchitectExceptions.h */,
 			);
 			name = MRGArchitect;
 			path = ../MRGArchitect;
@@ -361,6 +366,7 @@
 			files = (
 				095CF59218E5AD0A004BAD57 /* MRGArchitect.m in Sources */,
 				095CF56D18E5AD03004BAD57 /* main.m in Sources */,
+				4589541A1AE84D4D001ADEA2 /* MRGArchitectGradient.m in Sources */,
 				095CF57118E5AD03004BAD57 /* MRGAppDelegate.m in Sources */,
 				9B970F10323707CEFC766D76 /* MRGArchitectJSONLoader.m in Sources */,
 				9B9703142E34FC877CF98BB4 /* MRGArchitectImportAction.m in Sources */,

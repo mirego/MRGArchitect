@@ -56,6 +56,9 @@ From now on you are able to retrieve properties from your JSON file with `MRGArc
 
   // returns CGRect
   [self.architect rectForKey:@"rectKey"];
+  
+  // returns MRGArchitectGradient (helper class with colors & locations)
+  [self.architect gradientForKey:@"gradientKey"];
 ```
 
 ### Perfectionist way
@@ -162,6 +165,28 @@ Rects :
     "height": 64.0
   }
 }
+```
+OR
+```json
+"stringRectKey": "{{10.0, 10.0}, {64.0, 64.0}}"
+```
+
+Gradients :
+```json
+"gradientKey": [
+	{
+		"location": 0.0,
+		"color": "#FFFFFF"
+	},
+	{
+		"location": 0.3,
+		"color": "#878787"
+	},
+	{
+		"location": 1.0,
+		"color": "#000000"
+	}
+]
 ```
 
 ## License
