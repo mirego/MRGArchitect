@@ -163,6 +163,13 @@ static const CGFloat accuracy = 0.01f;
     XCTAssertEqualObjects([UIColor redColor], value, @"Expecting the color value 'red' for key: testColorForKey");
 }
 
+- (void)testColorWithAlphaForKey {
+    UIColor *value = [self.architect colorForKey:@"testColorWithAlphaForKey"];
+    UIColor *color = [UIColor colorWithRed:255/255.0f green:0 blue:0 alpha:255/255.0f];
+//    XCTAssertTrue([[[UIColor redColor] colorWithAlphaComponent:128/255.0f] isEqual:value], @"Expecting the color value 'red 50%%' for key: testColorForKey");
+    XCTAssertEqualObjects(color, value, @"Expecting the color value 'red 50%%' for key: testColorForKey");
+}
+
 - (void)testNonColorForKey {
     UIColor *value = nil;
     @try {
