@@ -102,92 +102,86 @@ Of course, it only applies if these files exist.
 
 #### Defining complex properties
 
-Colors :
-```json
-"colorKey": "#FF0000"
-```
+ - Colors :
+    ```javascript
+    "colorKey": "#FF0000",
+    // OR
+    "colorWithAlphaKey": "#FAFAFA80"
+    ```
 
-Edge Insets :
-```json
-"edgeInsetsKey": {
-  "top": 1.0,
-  "left": 2.0,
-  "bottom": 3.0,
-  "right": 4.0
-}
-```
-OR
-```json
-"stringEdgeInsetsKey": "{4.0, 3.0, 2.0, 1.0}"
-```
+ - Edge Insets :
+    ```javascript
+    "edgeInsetsKey": {
+      "top": 1.0,
+      "left": 2.0,
+      "bottom": 3.0,
+      "right": 4.0
+    },
+    // OR
+    "stringEdgeInsetsKey": "{4.0, 3.0, 2.0, 1.0}"
+    ```
 
-Points :
-```json
-"pointKey": {
-  "x": 1.0,
-  "y": 2.0
-}
-```
-OR
-```json
-"stringPointKey": "{2.0, 1.0}"
-```
+ - Points :
+    ```javascript
+    "pointKey": {
+      "x": 1.0,
+      "y": 2.0
+    },
+    // OR
+    "stringPointKey": "{2.0, 1.0}"
+    ```
 
-Sizes :
-```json
-"sizeKey": {
-  "width": 10.0,
-  "height": 20.0
-}
-```
-OR
-```json
-"stringSizeKey": "{20.0, 10.0}"
-```
+ - Sizes :
+    ```javascript
+    "sizeKey": {
+      "width": 10.0,
+      "height": 20.0
+    },
+    // OR
+    "stringSizeKey": "{20.0, 10.0}"
+    ```
 
-Fonts :
-```json
-"fontKey": {
-  "name": "HelveticaNeue",
-  "size": 15.0
-}
-```
+ - Fonts :
+    ```javascript
+    "fontKey": {
+      "name": "HelveticaNeue",
+      "size": 15.0
+    }
+    ```
 
-Rects :
-```json
-"rectKey": {
-  "origin": {
-    "x": 10.0,
-    "y": 10.0
-  },
-  "size": {
-    "width": 64.0,
-    "height": 64.0
-  }
-}
-```
-OR
-```json
-"stringRectKey": "{{10.0, 10.0}, {64.0, 64.0}}"
-```
+ - Rects :
+    ```javascript
+    "rectKey": {
+      "origin": {
+        "x": 10.0,
+        "y": 10.0
+      },
+      "size": {
+        "width": 64.0,
+        "height": 64.0
+      }
+    },
+    // OR
+    "stringRectKey": "{{10.0, 10.0}, {64.0, 64.0}}"
+    ```
 
-Gradients :
-```json
-"gradientKey": [
-	{
-		"location": 0.0,
-		"color": "#FFFFFF"
-	},
-	{
-		"location": 0.3,
-		"color": "#878787"
-	},
-	{
-		"location": 1.0,
-		"color": "#000000"
-	}
-]
-```
+ - Gradients :
+    ```javascript
+    "gradientKey": [
+	    {
+		    "location": 0.0,
+		    "color": "#FFFFFF"
+	    },
+	    {
+		    "location": 0.3,
+		    "color": "#878787"
+	    },
+	    {
+		    "location": 1.0,
+		    "color": "#000000"
+	    }
+    ]
+    ```
 
 ## License
 
