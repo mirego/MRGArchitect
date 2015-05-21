@@ -105,8 +105,8 @@ Of course, it only applies if these files exist.
  - Colors :
     ```javascript
     "colorKey": "#FF0000",
-    // OR
-    "colorWithAlphaKey": "#FAFAFA80"
+    // OR (ARGB format)
+    "colorWithAlphaKey": "#80FAFAFA"
     ```
 
  - Edge Insets :

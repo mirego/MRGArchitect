@@ -16,7 +16,7 @@
     "testFloatForKey": 3.14159265359,
     "testNonFloatForKey": "nonFloat",
     "testColorForKey": "#FF0000",
-    "testColorWithAlphaForKey": "#FF0000FF",
+    "testColorWithAlphaForKey": "#FFFF0000",
     "testNonColorForKey": 42,
     "testEdgeInsetsKey": {
         "top": 1.0,
