@@ -46,8 +46,16 @@ static UIColor *MRGUIColorWithHexString(NSString *hexString) {
 
 @interface MRGArchitect ()
 @property NSDictionary *entries;
-@property NSCache *colorCache;
-@property NSCache *fontCache;
+
+/*
+ Here we where previously using 2 instances of NSCache. This created the condition for the possibility of a deadlock in
+ NSCache itself at least on iOS 7. See http://openradar.appspot.com/10916098 , https://twitter.com/marcoarment/status/456455922454249473
+ or simply search "NSCache deadlocks" on google
+ since we now cache each architect instance in a global NSCache memory pressure is handled there and 
+ these caches can safely be simple mutable dictionaries.
+ */
+@property NSMutableDictionary *colorCache;
+@property NSMutableDictionary *fontCache;
 @end
 
 @implementation MRGArchitect
@@ -344,8 +352,8 @@ static UIColor *MRGUIColorWithHexString(NSString *hexString) {
         [loader registerAction:[MRGArchitectImportAction class]];
 
         _entries = [loader loadEntriesWithClassName:className];
-        _colorCache = [NSCache new];
-        _fontCache = [NSCache new];
+        _colorCache = [[NSMutableDictionary alloc] init];
+        _fontCache = [[NSMutableDictionary alloc] init];
     }
     
     return self;
