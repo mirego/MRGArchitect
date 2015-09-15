@@ -44,9 +44,12 @@ static UIColor *MRGUIColorWithHexString(NSString *hexString) {
     
 }
 
-@interface MRGArchitect ()
-@property NSDictionary *entries;
 
+
+@interface MRGArchitect ()
+@property (nonatomic) NSString *className;
+@property (nonatomic) NSDictionary *entries;
+@property (nonatomic) id<MRGArchitectLoader> loader;
 /*
  Here we where previously using 2 instances of NSCache. This created the condition for the possibility of a deadlock in
  NSCache itself at least on iOS 7. See http://openradar.appspot.com/10916098 , https://twitter.com/marcoarment/status/456455922454249473
@@ -54,23 +57,31 @@ static UIColor *MRGUIColorWithHexString(NSString *hexString) {
  since we now cache each architect instance in a global NSCache memory pressure is handled there and 
  these caches can safely be simple mutable dictionaries.
  */
-@property NSMutableDictionary *colorCache;
-@property NSMutableDictionary *fontCache;
+@property (nonatomic) NSMutableDictionary *colorCache;
+@property (nonatomic) NSMutableDictionary *fontCache;
 @end
 
 @implementation MRGArchitect
 
-+ (instancetype)architectForClassName:(NSString *)className {
++ (NSCache *)architectCache {
     static NSCache *architectCache;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         architectCache = [[NSCache alloc] init];
     });
+    return architectCache;
+}
 
-    MRGArchitect *architect = [architectCache objectForKey:className];
++ (void)clearCache {
+    [[self architectCache]removeAllObjects];
+}
+
++ (instancetype)architectForClassName:(NSString *)className {
+    
+    MRGArchitect *architect = [[self architectCache] objectForKey:className];
     if (architect == nil) {
         architect = [[MRGArchitect alloc] initWithClassName:className];
-        [architectCache setObject:architect forKey:className];
+        [[self architectCache] setObject:architect forKey:className];
     }
 
     return architect;
@@ -348,15 +359,21 @@ static UIColor *MRGUIColorWithHexString(NSString *hexString) {
 
 - (instancetype)initWithClassName:(NSString *)className {
     if (self = [super init]) {
+        _className = className;
         id<MRGArchitectLoader> loader = [[MRGArchitectJSONLoader alloc] init];
         [loader registerAction:[MRGArchitectImportAction class]];
-
+        _loader = loader;
         _entries = [loader loadEntriesWithClassName:className];
         _colorCache = [[NSMutableDictionary alloc] init];
         _fontCache = [[NSMutableDictionary alloc] init];
     }
     
     return self;
+}
+
+- (void)setTraitCollection:(UITraitCollection *)collection {
+    self.loader.traitCollection = collection;
+    _entries = [self.loader loadEntriesWithClassName:self.className];
 }
 
 - (id)objectForKey:(NSString *)key {

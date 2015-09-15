@@ -25,32 +25,16 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-#import <Foundation/Foundation.h>
+import Foundation
+import UIKit
 
-#import "MRGArchitectExceptions.h" // Custom Architect exceptions
-#import "MRGArchitectGradient.h"
-
-@interface MRGArchitect : NSObject
-
-+ (instancetype)architectForClassName:(NSString *)className;
-
-+ (void)clearCache;
-
-- (id)init __attribute__((unavailable));
-- (BOOL)boolForKey:(NSString *)key;
-- (NSString *)stringForKey:(NSString *)key;
-- (NSInteger)integerForKey:(NSString *)key;
-- (NSUInteger)unsignedIntegerForKey:(NSString *)key;
-- (int)intForKey:(NSString *)key;
-- (unsigned int)unsignedIntForKey:(NSString *)key;
-- (CGFloat)floatForKey:(NSString *)key;
-- (UIColor *)colorForKey:(NSString *)key;
-- (UIEdgeInsets)edgeInsetsForKey:(NSString *)key;
-- (CGPoint)pointForKey:(NSString *)key;
-- (CGSize)sizeForKey:(NSString *)key;
-- (UIFont *)fontForKey:(NSString *)key;
-- (CGRect)rectForKey:(NSString *)key;
-- (MRGArchitectGradient *)gradientForKey:(NSString *)key;
-
-@property (nonatomic) UITraitCollection* traitCollection;
-@end
+public class MainViewController : UIViewController {
+ 
+    public override func loadView() {
+        if #available(iOS 8.0, *) {
+            self.view = MainView(frame: UIScreen.mainScreen().bounds)
+        } else {
+            super.loadView();
+        }
+    }
+}

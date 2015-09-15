@@ -32,3 +32,4 @@ static NSString * const MRGArchitectKeyNotFoundException = @"MRGArchitectKeyNotF
 static NSString * const MRGArchitectUnexpectedValueTypeException = @"MRGArchitectUnexpectedValueTypeException";
 static NSString * const MRGArchitectUnexpectedActionTypeException = @"MRGArchitectUnexpectedActionTypeException";
 static NSString * const MRGArchitectInvalidActionClassRegistered = @"MRGArchitectInvalidActionTypeRegistered";
+static NSString * const MRGArchitectInvalidTraitCollectionDefinitionException = @"MRGArchitectInvalidTraitCollectionDefinitionException";

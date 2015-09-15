@@ -31,8 +31,11 @@
 
 @protocol MRGArchitectLoader <NSObject>
 
+@property (nonatomic) UITraitCollection* traitCollection;
+
 - (void)registerAction:(Class)actionToRegister;
 
 - (NSDictionary *)loadEntriesWithClassName:(NSString *)className;
+- (NSDictionary *)getCurrentTraitCollectionEntries;
 
 @end

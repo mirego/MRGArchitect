@@ -38,6 +38,7 @@ static const CGFloat accuracy = 0.01f;
 
 - (void)setUp {
     [super setUp];
+    [MRGArchitect clearCache];
     _architect = [MRGArchitect architectForClassName:NSStringFromClass([self class])];
 }
 
@@ -50,6 +51,7 @@ static const CGFloat accuracy = 0.01f;
     MRGArchitect *architect = nil;
     @try {
         architect = [MRGArchitect architectForClassName:@"MRGArchitectTests_Invalid"];
+        XCTAssert(false, "Should've thrown an exception");
     }
     @catch (NSException *exception) {
         XCTAssertNotNil(exception, @"Expecting an exception to be thrown for key: testParseError");
@@ -326,12 +328,37 @@ static const CGFloat accuracy = 0.01f;
 - (void)testGradientForKey {
     MRGArchitectGradient *gradient = [self.architect gradientForKey:@"testGradientForKey"];
     NSArray *colors = @[(id)[UIColor colorWithRed:1 green:1 blue:1 alpha:1].CGColor,
-                        (id)[UIColor colorWithRed:135/255.0f green:135/255.0f blue:135/255.0f alpha:1].CGColor,
+                        (id)[UIColor colorWithRed:1 green:0 blue:0 alpha:1].CGColor,
                         (id)[UIColor colorWithRed:0 green:0 blue:0 alpha:2].CGColor];
     NSArray *locations = @[@(0.0f), @(0.3f), @(1.0)];
     XCTAssertTrue(gradient.colors.count == 3 && gradient.locations.count == 3);
-    XCTAssertTrue([gradient.colors isEqualToArray:colors]);
+    XCTAssertTrue([[UIColor colorWithCGColor:(CGColorRef)gradient.colors[0]] isEqual:[UIColor colorWithCGColor:(CGColorRef)colors[0]]]);
+    XCTAssertTrue([[UIColor colorWithCGColor:(CGColorRef)gradient.colors[1]] isEqual:[UIColor colorWithCGColor:(CGColorRef)colors[1]]]);
+    XCTAssertTrue([[UIColor colorWithCGColor:(CGColorRef)gradient.colors[2]] isEqual:[UIColor colorWithCGColor:(CGColorRef)colors[2]]]);
     XCTAssertTrue([gradient.locations isEqualToArray:locations]);
+}
+
+- (BOOL)color:(UIColor *)color isEqualToColor:(UIColor *)otherColor {
+    CGColorSpaceRef colorSpaceRGB = CGColorSpaceCreateDeviceRGB();
+    
+    UIColor *(^convertColorToRGBSpace)(UIColor*) = ^(UIColor *color) {
+        if (CGColorSpaceGetModel(CGColorGetColorSpace(color.CGColor)) == kCGColorSpaceModelMonochrome) {
+            const CGFloat *oldComponents = CGColorGetComponents(color.CGColor);
+            CGFloat components[4] = {oldComponents[0], oldComponents[0], oldComponents[0], oldComponents[1]};
+            CGColorRef colorRef = CGColorCreate( colorSpaceRGB, components );
+            
+            UIColor *color = [UIColor colorWithCGColor:colorRef];
+            CGColorRelease(colorRef);
+            return color;
+        } else
+            return color;
+    };
+    
+    UIColor *selfColor = convertColorToRGBSpace(color);
+    otherColor = convertColorToRGBSpace(otherColor);
+    CGColorSpaceRelease(colorSpaceRGB);
+    
+    return [selfColor isEqual:otherColor];
 }
 
 - (void)testNotQuiteGradient {

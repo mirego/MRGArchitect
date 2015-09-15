@@ -34,15 +34,18 @@ static NSString *MRGArchitectActionPrefix = @"@";
 @interface MRGArchitectJSONLoader ()
 
 @property (nonatomic) NSMutableArray *registeredActions;
-
+@property (nonatomic) NSDictionary *currentDictionnary;
 @end
 
 @implementation MRGArchitectJSONLoader
+
+@synthesize traitCollection = _traitCollection;
 
 - (instancetype)init
 {
     if (self = [super init]) {
         _registeredActions = [[NSMutableArray alloc] init];
+        _currentDictionnary = @{};
     }
     return self;
 }
@@ -62,45 +65,54 @@ static NSString *MRGArchitectActionPrefix = @"@";
 
 - (NSDictionary *)loadEntriesWithClassName:(NSString *)className
 {
-    NSMutableArray *paths = [[NSMutableArray alloc] init];
-
-    NSString *path = [[self pathPrefixWithClassName:className] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.json", className]];
-    if (path) [paths addObject:path];
-
-    if (UIUserInterfaceIdiomPhone == [self userInterfaceIdiom]) {
-        NSString *path = nil;
-        float screenHeight = [self screenHeight];
-
-        path = [[self pathPrefixWithClassName:className]stringByAppendingPathComponent:[NSString stringWithFormat:@"%@~iphone.json", className]];
+    // Check if we have a architect file that uses the trait collection format
+    NSString *path = [[self pathPrefixWithClassName:className] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-traits.json", className]];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:path]) {
+        return [self loadTraitDictionnaryWithPath:path];
+    } else {
+        NSMutableArray *paths = [[NSMutableArray alloc] init];
+        
+        path = [[self pathPrefixWithClassName:className] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.json", className]];
         if (path) [paths addObject:path];
         
-        if (568.0f <= screenHeight) {
-            path = [[self pathPrefixWithClassName:className] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-568h.json", className]];
+        if (UIUserInterfaceIdiomPhone == [self userInterfaceIdiom]) {
+            NSString *path = nil;
+            float screenHeight = [self screenHeight];
+            
+            path = [[self pathPrefixWithClassName:className]stringByAppendingPathComponent:[NSString stringWithFormat:@"%@~iphone.json", className]];
             if (path) [paths addObject:path];
             
-            path = [[self pathPrefixWithClassName:className] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-568h~iphone.json", className]];
+            if (568.0f <= screenHeight) {
+                path = [[self pathPrefixWithClassName:className] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-568h.json", className]];
+                if (path) [paths addObject:path];
+                
+                path = [[self pathPrefixWithClassName:className] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-568h~iphone.json", className]];
+                if (path) [paths addObject:path];
+            }
+            if (667.0f <= screenHeight) {
+                path = [[self pathPrefixWithClassName:className] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-667h.json", className]];
+                if (path) [paths addObject:path];
+                
+                path = [[self pathPrefixWithClassName:className] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-667h~iphone.json", className]];
+                if (path) [paths addObject:path];
+            }
+            if (736.0f <= screenHeight) {
+                path = [[self pathPrefixWithClassName:className] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-736h.json", className]];
+                if (path) [paths addObject:path];
+                
+                path = [[self pathPrefixWithClassName:className] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-736h~iphone.json", className]];
+                if (path) [paths addObject:path];
+            }
+        } else if (UIUserInterfaceIdiomPad == [self userInterfaceIdiom]) {
+            NSString *path = [[self pathPrefixWithClassName:className] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@~ipad.json", className]];
             if (path) [paths addObject:path];
         }
-        if (667.0f <= screenHeight) {
-            path = [[self pathPrefixWithClassName:className] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-667h.json", className]];
-            if (path) [paths addObject:path];
-
-            path = [[self pathPrefixWithClassName:className] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-667h~iphone.json", className]];
-            if (path) [paths addObject:path];
-        }
-        if (736.0f <= screenHeight) {
-            path = [[self pathPrefixWithClassName:className] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-736h.json", className]];
-            if (path) [paths addObject:path];
-
-            path = [[self pathPrefixWithClassName:className] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-736h~iphone.json", className]];
-            if (path) [paths addObject:path];
-        }
-    } else if (UIUserInterfaceIdiomPad == [self userInterfaceIdiom]) {
-        NSString *path = [[self pathPrefixWithClassName:className] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@~ipad.json", className]];
-        if (path) [paths addObject:path];
+        
+        return [self loadEntriesWithPaths:paths];
+    
     }
-
-    return [self loadEntriesWithPaths:paths];
 }
 
 - (NSString *)pathPrefixWithClassName:(NSString *)className
@@ -118,7 +130,75 @@ static NSString *MRGArchitectActionPrefix = @"@";
     return UI_USER_INTERFACE_IDIOM();
 }
 
-- (NSDictionary *)loadEntriesWithPaths:(NSMutableArray *)paths
+- (void)setTraitCollection:(UITraitCollection *)collection {
+    _traitCollection = collection;
+}
+
+- (NSString *)identifierForSizeClass:(UIUserInterfaceSizeClass)class {
+    switch(class) {
+        case UIUserInterfaceSizeClassUnspecified:
+            return @"*";
+        case UIUserInterfaceSizeClassRegular:
+            return @"+";
+        case UIUserInterfaceSizeClassCompact:
+            return @"-";
+    }
+}
+
+- (NSDictionary *)loadTraitDictionnaryWithPath:(NSString *)path {
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    NSError *error = nil;
+    NSMutableDictionary *dictionary = [self dictionaryWithData:data error:&error];
+    if (error) {
+        @throw [NSException exceptionWithName:MRGArchitectParseErrorException reason:[error description] userInfo:[error userInfo]];
+    } else {
+        self.currentDictionnary = dictionary;
+        return [self loadEntriesForCurrentSizeClassKeyWithFallbacks];
+    }
+
+}
+
+- (NSDictionary *)getCurrentTraitCollectionEntries {
+    return [self loadEntriesForCurrentSizeClassKeyWithFallbacks];
+}
+
+- (NSDictionary *)loadEntriesForCurrentSizeClassKeyWithFallbacks {
+    
+    NSArray *keysToLoad = [self sizeClassKeysToLoadInOrder];
+    
+    NSMutableDictionary *entries = [[NSMutableDictionary alloc] init];
+    
+    for (NSString *key in keysToLoad) {
+        [entries addEntriesFromDictionary:[self loadEntriesForSizeClassKey:key inDictionnary:self.currentDictionnary]];
+    }
+    
+    return entries;
+}
+
+- (NSDictionary *)loadEntriesForSizeClassKey:(NSString *)key inDictionnary:(NSDictionary *)dictionary {
+    id object = [dictionary objectForKey:key];
+    
+    if ([object isKindOfClass:[NSDictionary class]]) {
+        [self performActionEntries:object];
+        return object;
+    } else {
+        return @{};
+    }
+}
+
+
+- (NSArray *)sizeClassKeysToLoadInOrder {
+    UIUserInterfaceSizeClass horizontalClass = self.traitCollection.horizontalSizeClass;
+    UIUserInterfaceSizeClass verticalClass = self.traitCollection.verticalSizeClass;
+    
+    NSArray *keys = @[@"[* *]",
+                      [NSString stringWithFormat:@"[* %@]", [self identifierForSizeClass:verticalClass]],
+                      [NSString stringWithFormat:@"[%@ *]", [self identifierForSizeClass:horizontalClass]],
+                      [NSString stringWithFormat:@"[%@ %@]", [self identifierForSizeClass:horizontalClass], [self identifierForSizeClass:verticalClass]]];
+    return keys;
+}
+
+- (NSDictionary *)loadEntriesWithPaths:(NSArray *)paths
 {
     NSMutableDictionary *entries = [[NSMutableDictionary alloc] init];
     for (NSString *path in paths) {
