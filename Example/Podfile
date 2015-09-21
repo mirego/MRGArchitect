@@ -1,0 +1,9 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'MRGArchitect_Example' do
+  pod "MRGArchitect", :path => "../"
+end
+
+target 'MRGArchitect_Tests', :exclusive => true do
+  pod 'OCMock', '~> 3.1'
+end

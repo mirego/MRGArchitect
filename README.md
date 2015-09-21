@@ -185,7 +185,7 @@ Of course, it only applies if these files exist.
 
 ## License
 
-`MRGArchitect` is © 2015 [Mirego](http://www.mirego.com) and may be freely distributed under the [New BSD license](http://opensource.org/licenses/BSD-3-Clause).  See the [`LICENSE.md`](https://github.com/mirego/MRGArchitect/blob/master/LICENSE.md) file.
+`MRGArchitect` is © 2014-2015 [Mirego](http://www.mirego.com) and may be freely distributed under the [New BSD license](http://opensource.org/licenses/BSD-3-Clause).  See the [`LICENSE`](https://github.com/mirego/MRGArchitect/blob/master/LICENSE) file.
 
 ## About Mirego
 
