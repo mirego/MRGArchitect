@@ -285,7 +285,13 @@ static const CGFloat accuracy = 0.01f;
 
 - (void)testOverridenKey {
     NSInteger value = [self.architect integerForKey:@"testOverridenKey"];
-    XCTAssertEqual(54, value, @"Expecting the integer value '54' for the key: testOverridenKey");
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        XCTAssertEqual(142, value, @"Expecting the integer value '142' for the key: testOverridenKey");
+    } else if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        XCTAssertEqual(242, value, @"Expecting the integer value '242' for the key: testOverridenKey");
+    } else {
+        XCTAssert(NO, @"Unknown userInterfaceIdiom");
+    }
 }
 
 - (void)testFontKey {
@@ -386,7 +392,13 @@ static const CGFloat accuracy = 0.01f;
 
 - (void)testImportSecondLevelOverrideGlobalKey {
     NSString *value = [self.architect stringForKey:@"testGlobalOverrideStringKey2"];
-    XCTAssertTrue([@"global 2 is hidden" isEqualToString:value], @"Expecting the string value 'global 2 is hidden' for the key: testGlobalOverrideStringKey2");
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        XCTAssertTrue([@"global 2 is hidden~iphone" isEqualToString:value], @"Expecting the string value 'global 2 is hidden' for the key: testGlobalOverrideStringKey2~iphone");
+    } else if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        XCTAssertTrue([@"global 2 is hidden~ipad" isEqualToString:value], @"Expecting the string value 'global 2 is hidden' for the key: testGlobalOverrideStringKey2~ipad");
+    } else {
+        XCTAssert(NO, @"Unknown userInterfaceIdiom");
+    }
 }
 
 - (void)testInvalidActionType {

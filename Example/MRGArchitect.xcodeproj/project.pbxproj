@@ -26,14 +26,7 @@
 		A64A74691BB0819400F43DA9 /* MRGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64A74661BB0819400F43DA9 /* MRGView.swift */; settings = {ASSET_TAGS = (); }; };
 		A64A746A1BB0819400F43DA9 /* MRGViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64A74671BB0819400F43DA9 /* MRGViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		A64A746C1BB0845000F43DA9 /* Tests_JSONLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = A64A74501BB080FD00F43DA9 /* Tests_JSONLoader.m */; settings = {ASSET_TAGS = (); }; };
-		A64A746F1BB0845800F43DA9 /* Tests_Import.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A744C1BB080FD00F43DA9 /* Tests_Import.json */; settings = {ASSET_TAGS = (); }; };
-		A64A74701BB0845800F43DA9 /* Tests_Invalid.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A744D1BB080FD00F43DA9 /* Tests_Invalid.json */; settings = {ASSET_TAGS = (); }; };
-		A64A74711BB0845800F43DA9 /* Tests_InvalidAction.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A744E1BB080FD00F43DA9 /* Tests_InvalidAction.json */; settings = {ASSET_TAGS = (); }; };
-		A64A74721BB0845800F43DA9 /* Tests_InvalidImportActionValue.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A744F1BB080FD00F43DA9 /* Tests_InvalidImportActionValue.json */; settings = {ASSET_TAGS = (); }; };
-		A64A74731BB0845800F43DA9 /* Tests_LoadingBasedOnTraits-traits.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A74511BB080FD00F43DA9 /* Tests_LoadingBasedOnTraits-traits.json */; settings = {ASSET_TAGS = (); }; };
 		A64A74741BB0845800F43DA9 /* Tests_LoadingBasedOnTraits.m in Sources */ = {isa = PBXBuildFile; fileRef = A64A74521BB080FD00F43DA9 /* Tests_LoadingBasedOnTraits.m */; settings = {ASSET_TAGS = (); }; };
-		A64A74751BB0845800F43DA9 /* Tests.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A74531BB080FD00F43DA9 /* Tests.json */; settings = {ASSET_TAGS = (); }; };
-		A64A74761BB0845800F43DA9 /* Tests~iphone.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A74541BB080FD00F43DA9 /* Tests~iphone.json */; settings = {ASSET_TAGS = (); }; };
 		A6D2755F1BB09CE400558D74 /* Tests_Import.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A744C1BB080FD00F43DA9 /* Tests_Import.json */; settings = {ASSET_TAGS = (); }; };
 		A6D275601BB09CE400558D74 /* Tests_Invalid.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A744D1BB080FD00F43DA9 /* Tests_Invalid.json */; settings = {ASSET_TAGS = (); }; };
 		A6D275611BB09CE400558D74 /* Tests_InvalidAction.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A744E1BB080FD00F43DA9 /* Tests_InvalidAction.json */; settings = {ASSET_TAGS = (); }; };
@@ -41,6 +34,15 @@
 		A6D275641BB09CE400558D74 /* Tests_LoadingBasedOnTraits-traits.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A74511BB080FD00F43DA9 /* Tests_LoadingBasedOnTraits-traits.json */; settings = {ASSET_TAGS = (); }; };
 		A6D275651BB09CE400558D74 /* Tests.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A74531BB080FD00F43DA9 /* Tests.json */; settings = {ASSET_TAGS = (); }; };
 		A6D275661BB09CE400558D74 /* Tests~iphone.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A74541BB080FD00F43DA9 /* Tests~iphone.json */; settings = {ASSET_TAGS = (); }; };
+		A6D275671BB0A62100558D74 /* Tests_Import.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A744C1BB080FD00F43DA9 /* Tests_Import.json */; settings = {ASSET_TAGS = (); }; };
+		A6D275681BB0A62800558D74 /* Tests_Invalid.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A744D1BB080FD00F43DA9 /* Tests_Invalid.json */; settings = {ASSET_TAGS = (); }; };
+		A6D275691BB0A62800558D74 /* Tests_InvalidAction.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A744E1BB080FD00F43DA9 /* Tests_InvalidAction.json */; settings = {ASSET_TAGS = (); }; };
+		A6D2756A1BB0A62800558D74 /* Tests_InvalidImportActionValue.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A744F1BB080FD00F43DA9 /* Tests_InvalidImportActionValue.json */; settings = {ASSET_TAGS = (); }; };
+		A6D2756B1BB0A62800558D74 /* Tests_LoadingBasedOnTraits-traits.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A74511BB080FD00F43DA9 /* Tests_LoadingBasedOnTraits-traits.json */; settings = {ASSET_TAGS = (); }; };
+		A6D2756C1BB0A62800558D74 /* Tests.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A74531BB080FD00F43DA9 /* Tests.json */; settings = {ASSET_TAGS = (); }; };
+		A6D2756D1BB0A62800558D74 /* Tests~iphone.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A74541BB080FD00F43DA9 /* Tests~iphone.json */; settings = {ASSET_TAGS = (); }; };
+		A6D2756F1BB0A64000558D74 /* Tests~ipad.json in Resources */ = {isa = PBXBuildFile; fileRef = A6D2756E1BB0A64000558D74 /* Tests~ipad.json */; settings = {ASSET_TAGS = (); }; };
+		A6D275701BB0A64200558D74 /* Tests~ipad.json in Resources */ = {isa = PBXBuildFile; fileRef = A6D2756E1BB0A64000558D74 /* Tests~ipad.json */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +96,7 @@
 		A64A74671BB0819400F43DA9 /* MRGViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MRGViewController.swift; sourceTree = "<group>"; };
 		A64A746B1BB0835C00F43DA9 /* MRGArchitect-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MRGArchitect-Bridging-Header.h"; sourceTree = "<group>"; };
 		A6D275571BB0954900558D74 /* MRGArchitectJSONLoader+Tests_JSONLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MRGArchitectJSONLoader+Tests_JSONLoader.h"; sourceTree = "<group>"; };
+		A6D2756E1BB0A64000558D74 /* Tests~ipad.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Tests~ipad.json"; sourceTree = "<group>"; };
 		BF1B5C487607E45DF387AE2E /* Pods-MRGArchitect_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MRGArchitect_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MRGArchitect_Tests/Pods-MRGArchitect_Tests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -198,6 +201,7 @@
 				A64A74511BB080FD00F43DA9 /* Tests_LoadingBasedOnTraits-traits.json */,
 				6003F5BB195388D20070C39A /* Tests.m */,
 				A64A74531BB080FD00F43DA9 /* Tests.json */,
+				A6D2756E1BB0A64000558D74 /* Tests~ipad.json */,
 				A64A74541BB080FD00F43DA9 /* Tests~iphone.json */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 			);
@@ -329,6 +333,7 @@
 				A6D275601BB09CE400558D74 /* Tests_Invalid.json in Resources */,
 				A6D275651BB09CE400558D74 /* Tests.json in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
+				A6D2756F1BB0A64000558D74 /* Tests~ipad.json in Resources */,
 				A6D2755F1BB09CE400558D74 /* Tests_Import.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -337,14 +342,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A64A74701BB0845800F43DA9 /* Tests_Invalid.json in Resources */,
-				A64A746F1BB0845800F43DA9 /* Tests_Import.json in Resources */,
+				A6D275681BB0A62800558D74 /* Tests_Invalid.json in Resources */,
+				A6D275671BB0A62100558D74 /* Tests_Import.json in Resources */,
 				6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */,
-				A64A74751BB0845800F43DA9 /* Tests.json in Resources */,
-				A64A74711BB0845800F43DA9 /* Tests_InvalidAction.json in Resources */,
-				A64A74761BB0845800F43DA9 /* Tests~iphone.json in Resources */,
-				A64A74721BB0845800F43DA9 /* Tests_InvalidImportActionValue.json in Resources */,
-				A64A74731BB0845800F43DA9 /* Tests_LoadingBasedOnTraits-traits.json in Resources */,
+				A6D2756C1BB0A62800558D74 /* Tests.json in Resources */,
+				A6D275691BB0A62800558D74 /* Tests_InvalidAction.json in Resources */,
+				A6D2756D1BB0A62800558D74 /* Tests~iphone.json in Resources */,
+				A6D2756A1BB0A62800558D74 /* Tests_InvalidImportActionValue.json in Resources */,
+				A6D275701BB0A64200558D74 /* Tests~ipad.json in Resources */,
+				A6D2756B1BB0A62800558D74 /* Tests_LoadingBasedOnTraits-traits.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
