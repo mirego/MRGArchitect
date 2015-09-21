@@ -1,0 +1,17 @@
+{
+    "[* *]": {
+        "title":"any any"
+    },
+    "[+ *]": {
+        "title":"Regular any"
+    },
+    "[* -]": {
+        "title":"any Compact"
+    },
+    "[- *]": {
+        "title":"Compact any"
+    },
+    "[- +]": {
+        "title":"Compact Regular"
+    }
+}

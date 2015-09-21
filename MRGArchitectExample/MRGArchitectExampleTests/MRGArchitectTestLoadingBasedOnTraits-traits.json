@@ -1,0 +1,43 @@
+{
+    "[* *]": {
+        "title":"any any",
+        "moto":"MRGArchitect Rocks",
+        "subtitle":"any any",
+        "subtitle2":"any any",
+        "subtitle3":"any any"
+    },
+    "[* +]": {
+        "title":"any Regular",
+        "subtitle":"any Regular",
+        "subtitle2":"any Regular"
+    },
+    "[+ *]": {
+        "title":"Regular any",
+        "subtitle":"Regular any",
+        "subtitle2":"Regular any"
+    },
+    "[- *]": {
+        "title":"Compact any",
+        "subtitle":"Compact any",
+        "subtitle2":"Compact any",
+        "subtitle3":"Compact any"
+    },
+    "[* -]": {
+        "title":"any Compact",
+        "subtitle":"any Compact",
+        "subtitle2":"any Compact",
+        "subtitle3":"any Compact"
+    },
+    "[- -]": {
+        "title":"Compact Compact"
+    },
+    "[+ -]": {
+        "title":"Regular Compact"
+    },
+    "[- +]": {
+        "title":"Compact Regular"
+    },
+    "[+ +]": {
+        "title":"Regular Regular"
+    }
+}
