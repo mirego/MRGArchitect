@@ -7,9 +7,8 @@ Pod::Spec.new do |s|
   s.authors          = { 'Mirego, Inc.' => 'info@mirego.com' }
   s.source           = { :git => "https://github.com/Mirego/MRGArchitect.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/Mirego'
-
   s.platform         = :ios, '6.0'
   s.requires_arc     = true
-
   s.source_files     = 'Pod/Classes'
+  s.tvos.deployment_target = '9.0'
 end
