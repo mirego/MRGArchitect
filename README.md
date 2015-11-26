@@ -1,6 +1,6 @@
 # MRGArchitect
 
-[![CI Status](http://img.shields.io/travis/mirego/MRGArchitect.svg?style=flat)](https://travis-ci.org/mirego/MRGArchitect)
+[![CI Status](https://travis-ci.org/mirego/MRGArchitect.svg?branch=master)](https://travis-ci.org/mirego/MRGArchitect)
 [![Version](https://img.shields.io/cocoapods/v/MRGArchitect.svg?style=flat)](http://cocoadocs.org/docsets/MRGArchitect)
 [![License](https://img.shields.io/cocoapods/l/MRGArchitect.svg?style=flat)](http://cocoadocs.org/docsets/MRGArchitect)
 [![Platform](https://img.shields.io/cocoapods/p/MRGArchitect.svg?style=flat)](http://cocoadocs.org/docsets/MRGArchitect)
