@@ -61,7 +61,7 @@ From now on you are able to retrieve properties from your JSON file with `MRGArc
 
   // returns CGRect
   [self.architect rectForKey:@"rectKey"];
-  
+
   // returns MRGArchitectGradient (helper class with colors & locations)
   [self.architect gradientForKey:@"gradientKey"];
 ```
@@ -104,6 +104,39 @@ These are the order the files will be loaded and so the order the properties wil
 - and the property "bar" of `<name>.json` will be overriden by the property "bar" of `<name>~ipad.json`, on iPad.
 
 Of course, it only applies if these files exist.
+
+### Working with traits and size classes
+
+`MRGArchitect` also supports size class dependant properties.  For this to work, you need to provide a `<name>-traits.json` file with a data structure in this fashion:
+```javascript
+{
+    "[* *]": {
+        "title":"Any Any"
+    },
+    "[+ *]": {
+        "title":"Regular Any"
+    },
+    "[* -]": {
+        "title":"Any Compact"
+    },
+    "[- *]": {
+        "title":"Compact Any"
+    },
+    "[- +]": {
+        "title":"Compact Regular"
+    },
+    "[+ +]": {
+        "title":"Regular Regular"
+    }
+}
+```
+In your view, update `MRGArchitect`'s trait collection when appropriate ([see Apple's `traitCollectionDidChange` documentation](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UITraitEnvironment_Ref/#//apple_ref/occ/intfm/UITraitEnvironment/traitCollectionDidChange:)):
+```objc
+self.architect.traitCollection = self.traitCollection;
+```
+Properties whose size class description match the current size class will be loaded, from the most generic to the most precise.  The following chart illustrate the current possibilities:
+
+![Device Size Classes](https://raw.githubusercontent.com/Mirego/MRGArchitect/assets/size_classes.png)
 
 #### Defining complex properties
 

@@ -30,47 +30,21 @@ import UIKit
 @available(iOS 8.0, *)
 @objc(MRGView) class MRGView: UIView {
     
-    private var architect : MRGArchitect;
-    private var subview: UIView;
-    private var image: UIImageView;
-    private var label: UILabel;
+    //Storyboard Properties
+    @IBOutlet weak var titleLabel: UILabel!
     
-    override init(frame: CGRect) {
-        let name = NSStringFromClass(MRGView);
-        self.architect = MRGArchitect(forClassName: name);
-        self.subview = UIView(frame: frame);
-        self.image = UIImageView(image: UIImage(named: "Image"));
-        self.label = UILabel();
-        super.init(frame: frame);
-        self.backgroundColor = UIColor.redColor();
-        self.subview.backgroundColor = UIColor.blueColor()
-
-        self.addSubview(self.subview);
-        self.subview.addSubview(self.image);
-        self.subview.addSubview(self.label);
-        self.image.sizeToFit();
-        self.label.text = String(format: "%@", self.architect.stringForKey("title"));
-        self.label.sizeToFit();
-    }
+    //Other
+    private var architect : MRGArchitect
     
     required init?(coder aDecoder: NSCoder) {
-        let name = NSStringFromClass(MRGView);
-        self.architect = MRGArchitect(forClassName: name);
-        self.subview = UIView(frame: CGRectZero);
-        self.image = UIImageView(image: UIImage(named: "Image"));
-        self.label = UILabel();
-        super.init(coder: aDecoder);
+        let name = NSStringFromClass(MRGView)
+        self.architect = MRGArchitect(forClassName: name)
+        super.init(coder: aDecoder)
     }
     
     override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
-        self.architect.traitCollection = self.traitCollection;
-        self.label.text = String(format: "%@", self.architect.stringForKey("title"));
-        self.label.sizeToFit();
+        self.architect.traitCollection = self.traitCollection
+        titleLabel.text = String(format: "%@", self.architect.stringForKey("title"))
         self.setNeedsLayout();
-    }
-    
-    override func layoutSubviews() {
-        self.subview.frame = CGRect(x: 20, y: 20, width: self.bounds.width - 40, height: self.bounds.height - 40);
-        self.image.frame = CGRect(x: (self.subview.bounds.width * 0.5) - (self.image.frame.width * 0.5), y: (self.subview.bounds.height * 0.5) - (self.image.frame.height * 0.5), width: self.image.frame.width, height: self.image.frame.width);
     }
 }
