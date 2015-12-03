@@ -105,7 +105,7 @@ These are the order the files will be loaded and so the order the properties wil
 
 Of course, it only applies if these files exist.
 
-### Working with traits and size classes
+#### Working with traits and size classes
 
 `MRGArchitect` also supports size class dependant properties.  For this to work, you need to provide a `<name>-traits.json` file with a data structure in this fashion:
 ```javascript
