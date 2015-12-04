@@ -1,6 +1,6 @@
 PODS:
-  - MRGArchitect (1.0)
-  - OCMock (3.1.5)
+  - MRGArchitect (1.1.0)
+  - OCMock (3.2)
 
 DEPENDENCIES:
   - MRGArchitect (from `../`)
@@ -11,7 +11,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  MRGArchitect: eba2bb0987c85a197d00e075ee0b4446d9042e34
-  OCMock: 4c2925291f80407c3738dd1db14d21d0cc278864
+  MRGArchitect: b226234d4a7f49c500c92909b97a1305ad0e3d2b
+  OCMock: 28def049ef47f996b515a8eeea958be7ccab2dbb
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0

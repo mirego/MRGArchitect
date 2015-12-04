@@ -22,27 +22,27 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
-		A64A74681BB0819400F43DA9 /* MRGView-traits.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A74651BB0819400F43DA9 /* MRGView-traits.json */; settings = {ASSET_TAGS = (); }; };
-		A64A74691BB0819400F43DA9 /* MRGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64A74661BB0819400F43DA9 /* MRGView.swift */; settings = {ASSET_TAGS = (); }; };
-		A64A746A1BB0819400F43DA9 /* MRGViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64A74671BB0819400F43DA9 /* MRGViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		A64A746C1BB0845000F43DA9 /* Tests_JSONLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = A64A74501BB080FD00F43DA9 /* Tests_JSONLoader.m */; settings = {ASSET_TAGS = (); }; };
-		A64A74741BB0845800F43DA9 /* Tests_LoadingBasedOnTraits.m in Sources */ = {isa = PBXBuildFile; fileRef = A64A74521BB080FD00F43DA9 /* Tests_LoadingBasedOnTraits.m */; settings = {ASSET_TAGS = (); }; };
-		A6D2755F1BB09CE400558D74 /* Tests_Import.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A744C1BB080FD00F43DA9 /* Tests_Import.json */; settings = {ASSET_TAGS = (); }; };
-		A6D275601BB09CE400558D74 /* Tests_Invalid.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A744D1BB080FD00F43DA9 /* Tests_Invalid.json */; settings = {ASSET_TAGS = (); }; };
-		A6D275611BB09CE400558D74 /* Tests_InvalidAction.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A744E1BB080FD00F43DA9 /* Tests_InvalidAction.json */; settings = {ASSET_TAGS = (); }; };
-		A6D275621BB09CE400558D74 /* Tests_InvalidImportActionValue.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A744F1BB080FD00F43DA9 /* Tests_InvalidImportActionValue.json */; settings = {ASSET_TAGS = (); }; };
-		A6D275641BB09CE400558D74 /* Tests_LoadingBasedOnTraits-traits.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A74511BB080FD00F43DA9 /* Tests_LoadingBasedOnTraits-traits.json */; settings = {ASSET_TAGS = (); }; };
-		A6D275651BB09CE400558D74 /* Tests.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A74531BB080FD00F43DA9 /* Tests.json */; settings = {ASSET_TAGS = (); }; };
-		A6D275661BB09CE400558D74 /* Tests~iphone.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A74541BB080FD00F43DA9 /* Tests~iphone.json */; settings = {ASSET_TAGS = (); }; };
-		A6D275671BB0A62100558D74 /* Tests_Import.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A744C1BB080FD00F43DA9 /* Tests_Import.json */; settings = {ASSET_TAGS = (); }; };
-		A6D275681BB0A62800558D74 /* Tests_Invalid.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A744D1BB080FD00F43DA9 /* Tests_Invalid.json */; settings = {ASSET_TAGS = (); }; };
-		A6D275691BB0A62800558D74 /* Tests_InvalidAction.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A744E1BB080FD00F43DA9 /* Tests_InvalidAction.json */; settings = {ASSET_TAGS = (); }; };
-		A6D2756A1BB0A62800558D74 /* Tests_InvalidImportActionValue.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A744F1BB080FD00F43DA9 /* Tests_InvalidImportActionValue.json */; settings = {ASSET_TAGS = (); }; };
-		A6D2756B1BB0A62800558D74 /* Tests_LoadingBasedOnTraits-traits.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A74511BB080FD00F43DA9 /* Tests_LoadingBasedOnTraits-traits.json */; settings = {ASSET_TAGS = (); }; };
-		A6D2756C1BB0A62800558D74 /* Tests.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A74531BB080FD00F43DA9 /* Tests.json */; settings = {ASSET_TAGS = (); }; };
-		A6D2756D1BB0A62800558D74 /* Tests~iphone.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A74541BB080FD00F43DA9 /* Tests~iphone.json */; settings = {ASSET_TAGS = (); }; };
-		A6D2756F1BB0A64000558D74 /* Tests~ipad.json in Resources */ = {isa = PBXBuildFile; fileRef = A6D2756E1BB0A64000558D74 /* Tests~ipad.json */; settings = {ASSET_TAGS = (); }; };
-		A6D275701BB0A64200558D74 /* Tests~ipad.json in Resources */ = {isa = PBXBuildFile; fileRef = A6D2756E1BB0A64000558D74 /* Tests~ipad.json */; settings = {ASSET_TAGS = (); }; };
+		A64A74681BB0819400F43DA9 /* MRGView-traits.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A74651BB0819400F43DA9 /* MRGView-traits.json */; };
+		A64A74691BB0819400F43DA9 /* MRGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64A74661BB0819400F43DA9 /* MRGView.swift */; };
+		A64A746A1BB0819400F43DA9 /* MRGViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64A74671BB0819400F43DA9 /* MRGViewController.swift */; };
+		A64A746C1BB0845000F43DA9 /* Tests_JSONLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = A64A74501BB080FD00F43DA9 /* Tests_JSONLoader.m */; };
+		A64A74741BB0845800F43DA9 /* Tests_LoadingBasedOnTraits.m in Sources */ = {isa = PBXBuildFile; fileRef = A64A74521BB080FD00F43DA9 /* Tests_LoadingBasedOnTraits.m */; };
+		A6D2755F1BB09CE400558D74 /* Tests_Import.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A744C1BB080FD00F43DA9 /* Tests_Import.json */; };
+		A6D275601BB09CE400558D74 /* Tests_Invalid.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A744D1BB080FD00F43DA9 /* Tests_Invalid.json */; };
+		A6D275611BB09CE400558D74 /* Tests_InvalidAction.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A744E1BB080FD00F43DA9 /* Tests_InvalidAction.json */; };
+		A6D275621BB09CE400558D74 /* Tests_InvalidImportActionValue.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A744F1BB080FD00F43DA9 /* Tests_InvalidImportActionValue.json */; };
+		A6D275641BB09CE400558D74 /* Tests_LoadingBasedOnTraits-traits.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A74511BB080FD00F43DA9 /* Tests_LoadingBasedOnTraits-traits.json */; };
+		A6D275651BB09CE400558D74 /* Tests.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A74531BB080FD00F43DA9 /* Tests.json */; };
+		A6D275661BB09CE400558D74 /* Tests~iphone.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A74541BB080FD00F43DA9 /* Tests~iphone.json */; };
+		A6D275671BB0A62100558D74 /* Tests_Import.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A744C1BB080FD00F43DA9 /* Tests_Import.json */; };
+		A6D275681BB0A62800558D74 /* Tests_Invalid.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A744D1BB080FD00F43DA9 /* Tests_Invalid.json */; };
+		A6D275691BB0A62800558D74 /* Tests_InvalidAction.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A744E1BB080FD00F43DA9 /* Tests_InvalidAction.json */; };
+		A6D2756A1BB0A62800558D74 /* Tests_InvalidImportActionValue.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A744F1BB080FD00F43DA9 /* Tests_InvalidImportActionValue.json */; };
+		A6D2756B1BB0A62800558D74 /* Tests_LoadingBasedOnTraits-traits.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A74511BB080FD00F43DA9 /* Tests_LoadingBasedOnTraits-traits.json */; };
+		A6D2756C1BB0A62800558D74 /* Tests.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A74531BB080FD00F43DA9 /* Tests.json */; };
+		A6D2756D1BB0A62800558D74 /* Tests~iphone.json in Resources */ = {isa = PBXBuildFile; fileRef = A64A74541BB080FD00F43DA9 /* Tests~iphone.json */; };
+		A6D2756F1BB0A64000558D74 /* Tests~ipad.json in Resources */ = {isa = PBXBuildFile; fileRef = A6D2756E1BB0A64000558D74 /* Tests~ipad.json */; };
+		A6D275701BB0A64200558D74 /* Tests~ipad.json in Resources */ = {isa = PBXBuildFile; fileRef = A6D2756E1BB0A64000558D74 /* Tests~ipad.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -251,6 +251,7 @@
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
 				DFA5CC4D7937DDF2AA0A4F9E /* Copy Pods Resources */,
+				353625BCA1695359BA34A2C6 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -270,6 +271,7 @@
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
 				0C1B3A3E617270F6ED49DBF0 /* Copy Pods Resources */,
+				23EA71CD14A01E0FB47E3B44 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -370,6 +372,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MRGArchitect_Tests/Pods-MRGArchitect_Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		23EA71CD14A01E0FB47E3B44 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MRGArchitect_Tests/Pods-MRGArchitect_Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		353625BCA1695359BA34A2C6 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MRGArchitect_Example/Pods-MRGArchitect_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		57FED21714E0D969446345E8 /* Check Pods Manifest.lock */ = {

@@ -34,17 +34,16 @@ import UIKit
     @IBOutlet weak var titleLabel: UILabel!
     
     //Other
-    private var architect : MRGArchitect
+    private var architect : MRGArchitect!
     
     required init?(coder aDecoder: NSCoder) {
-        let name = NSStringFromClass(MRGView)
-        self.architect = MRGArchitect(forClassName: name)
         super.init(coder: aDecoder)
+        self.architect = MRGArchitect(forObject: self)
     }
     
     override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
         self.architect.traitCollection = self.traitCollection
         titleLabel.text = String(format: "%@", self.architect.stringForKey("title"))
-        self.setNeedsLayout();
+        self.setNeedsLayout()
     }
 }

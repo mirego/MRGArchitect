@@ -18,8 +18,9 @@ Say you want properties for your `LoginView`. Create a `LoginView.json` file and
 
 Instantiate your `MRGArchitect` in your `LoginView.m` and keep it in a member variable like so :
 ```objc
-  self.architect = [MRGArchitect architectForClassName:NSStringFromClass(self.class)];
+  self.architect = [MRGArchitect architectForObject:self];
 ```
+
 
 From now on you are able to retrieve properties from your JSON file with `MRGArchitect`’s helpers like so :
 ```objc
@@ -107,7 +108,8 @@ Of course, it only applies if these files exist.
 
 #### Working with traits and size classes
 
-`MRGArchitect` also supports size class dependant properties.  For this to work, you need to provide a `<name>-traits.json` file with a data structure in this fashion:
+`MRGArchitect` also supports size class dependant properties.  For this to work, you need to provide a property file
+`<name>-traits.json` with a data structure in this fashion:
 ```javascript
 {
     "[* *]": {

@@ -32,6 +32,7 @@
 
 @interface MRGArchitect : NSObject
 
++ (instancetype)architectForObject:(NSObject *)object;
 + (instancetype)architectForClassName:(NSString *)className;
 
 + (void)clearCache;

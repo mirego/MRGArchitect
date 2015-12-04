@@ -77,6 +77,11 @@ static UIColor *MRGUIColorWithHexString(NSString *hexString) {
     [[self architectCache] removeAllObjects];
 }
 
++ (instancetype)architectForObject:(NSObject *)object {
+    NSString *className = [NSStringFromClass(object.class) componentsSeparatedByString:@"."].lastObject;
+    return [[self class] architectForClassName:className];
+}
+
 + (instancetype)architectForClassName:(NSString *)className {
     MRGArchitect *architect = [[self architectCache] objectForKey:className];
     if (architect == nil) {
