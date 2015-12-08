@@ -423,4 +423,12 @@ static const CGFloat accuracy = 0.01f;
     }
 }
 
+- (void)testValidInstanciationFromObject {
+    XCTAssertNoThrow([MRGArchitect architectForObject:self], "Expecting the instanciation to complete without exception");
+}
+
+- (void)testInValidInstanciationFromObject {
+    XCTAssertThrows([MRGArchitect architectForObject:[MRGArchitectGradient new]], "Expecting the instanciation to throw exception");
+}
+
 @end
