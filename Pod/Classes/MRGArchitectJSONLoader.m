@@ -251,22 +251,23 @@ NSString * const MRGArchitectActionPrefix = @"@";
 }
 
 - (void)performActionEntries:(NSMutableDictionary *)entries {
-    [entries enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+    for (NSString *key in [entries allKeys]) {
+        id obj = [entries objectForKey:key];
         NSString *actionName = [self actionNameForKey:key];
         if (actionName.length > 0) {
             const NSUInteger indexOfRegisteredAction = [self.registeredActions indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
                 id<MRGArchitectAction> registeredAction = obj;
                 return [registeredAction.actionName isEqualToString:actionName];
             }];
-            
+
             if (indexOfRegisteredAction == NSNotFound) {
                 @throw [NSException exceptionWithName:MRGArchitectUnexpectedActionTypeException reason:@"Unexpected action type encountered (no matching action class registered)" userInfo:[NSDictionary dictionaryWithObject:key forKey:@"invalidActionType"]];
             }
-            
+
             id <MRGArchitectAction> actionToPerform = self.registeredActions[indexOfRegisteredAction];
             [actionToPerform performActionWithValue:obj onEntries:entries];
         }
-    }];
+    }
 }
 
 - (NSString *)actionNameForKey:(id)key {
