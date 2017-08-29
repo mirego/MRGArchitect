@@ -30,6 +30,8 @@
 #import "MRGArchitectExceptions.h" // Custom Architect exceptions
 #import "MRGArchitectGradient.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface MRGArchitect : NSObject
 
 + (instancetype)architectForObject:(NSObject *)object;
@@ -53,5 +55,7 @@
 - (CGRect)rectForKey:(NSString *)key;
 - (MRGArchitectGradient *)gradientForKey:(NSString *)key;
 
-@property (nonatomic) UITraitCollection* traitCollection;
+@property (nonatomic, nullable) UITraitCollection* traitCollection;
 @end
+
+NS_ASSUME_NONNULL_END

@@ -34,8 +34,12 @@
  *  'locations' property contains float NSNumbers (relative location between 0.0 and 1.0) .
  */
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface MRGArchitectGradient : NSObject
 
 @property (nonatomic) NSArray *colors;
 @property (nonatomic) NSArray *locations;
 @end
+
+NS_ASSUME_NONNULL_END
