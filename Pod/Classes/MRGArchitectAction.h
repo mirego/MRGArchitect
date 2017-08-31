@@ -27,6 +27,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol MRGArchitectLoader;
 
 @protocol MRGArchitectAction <NSObject>
@@ -39,3 +41,5 @@
 - (void)performActionWithValue:(id)actionValue onEntries:(NSMutableDictionary *)entriesToUpdate;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -28,6 +28,10 @@
 #import <Foundation/Foundation.h>
 #import "MRGArchitectAction.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface MRGArchitectImportAction : NSObject <MRGArchitectAction>
 
 @end
+
+NS_ASSUME_NONNULL_END
