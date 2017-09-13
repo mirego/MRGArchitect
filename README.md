@@ -95,6 +95,8 @@ Here is the order it will search for files on iPhone :
 - `<name>-667h~iphone.json`
 - `<name>-736h.json`
 - `<name>-736h~iphone.json`
+- `<name>-812h.json`
+- `<name>-812h~iphone.json`
 
 On iPad :
 - `<name>.json`
