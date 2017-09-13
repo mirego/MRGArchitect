@@ -122,6 +122,18 @@ NSString * const MRGArchitectActionPrefix = @"@";
                     [paths addObject:path];
                 }
             }
+            
+            if (812.0f <= screenHeight) {
+                path = [self pathForClassName:className suffix:@"-812h"];
+                if ([path length] > 0) {
+                    [paths addObject:path];
+                }
+                
+                path = [self pathForClassName:className suffix:@"-812h~iphone"];
+                if ([path length] > 0) {
+                    [paths addObject:path];
+                }
+            }
             break;
         }
             
