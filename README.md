@@ -227,7 +227,7 @@ Properties whose size class description match the current size class will be loa
 
 ## License
 
-`MRGArchitect` is © 2014-2015 [Mirego](http://www.mirego.com) and may be freely distributed under the [New BSD license](http://opensource.org/licenses/BSD-3-Clause).  See the [`LICENSE`](https://github.com/mirego/MRGArchitect/blob/master/LICENSE) file.
+`MRGArchitect` is © 2014-2017 [Mirego](http://www.mirego.com) and may be freely distributed under the [New BSD license](http://opensource.org/licenses/BSD-3-Clause).  See the [`LICENSE`](https://github.com/mirego/MRGArchitect/blob/master/LICENSE) file.
 
 ## About Mirego
 
