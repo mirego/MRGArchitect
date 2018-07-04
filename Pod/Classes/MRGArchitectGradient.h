@@ -25,7 +25,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 /** This is a helper class that provides data formatted in a way that facilitate
  *  CAGradientLayer and CGGradient usage.
