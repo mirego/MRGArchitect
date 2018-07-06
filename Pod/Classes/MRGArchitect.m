@@ -251,7 +251,7 @@ static UIColor *MRGUIColorWithHexString(NSString *hexString) {
     id object = [self objectForKey:key];
     if ([object isKindOfClass:[NSDictionary class]]) {
         NSDictionary *dictionary = (NSDictionary *)object;
-        NSString *name = nil;
+        NSString *name = @"";
         CGFloat size = 0.0f;
         if ([[dictionary allKeys] containsObject:@"name"]) {
             id obj = [dictionary objectForKey:@"name"];
