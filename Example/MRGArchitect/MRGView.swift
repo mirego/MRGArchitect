@@ -38,12 +38,12 @@ import UIKit
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.architect = MRGArchitect(forObject: self)
+        self.architect = MRGArchitect(for: self)
     }
     
-    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         self.architect.traitCollection = self.traitCollection
-        titleLabel.text = String(format: "%@", self.architect.stringForKey("title"))
+        titleLabel.text = String(format: "%@", self.architect.string(forKey: "title"))
         self.setNeedsLayout()
     }
 }
