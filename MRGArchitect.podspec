@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "MRGArchitect"
-  s.version          = "1.1.5"
+  s.version          = "1.1.6"
   s.summary          = "Static application configuration via JSON."
   s.homepage         = "https://github.com/Mirego/MRGDateFormatter"
   s.license          = 'BSD 3-Clause'
