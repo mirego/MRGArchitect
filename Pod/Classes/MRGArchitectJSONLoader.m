@@ -155,7 +155,7 @@ NSString * const MRGArchitectActionPrefix = @"@";
 }
 
 - (NSString *)pathForClassName:(NSString *)className suffix:(NSString *)suffix {
-    NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@%@", className, suffix ?: @""] ofType:@"json"];
+    NSString *path = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%@.json", className, suffix ?: @""]];
 
     return [self fileExistsAtPath:path] ? path : nil;
 }
