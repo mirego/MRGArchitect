@@ -41,6 +41,21 @@ NSString * const MRGArchitectActionPrefix = @"@";
 
 @synthesize traitCollection = _traitCollection;
 
++ (NSCache *)cache {
+    static NSCache *cache;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        cache = [[NSCache alloc] init];
+        cache.name = @"com.mirego.MRGArchitect.JSONLoader.cache";
+    });
+    
+    return cache;
+}
+
++ (void)clearCache {
+    [self.cache removeAllObjects];
+}
+
 - (instancetype)init {
     if (self = [super init]) {
         _registeredActions = [[NSMutableArray alloc] init];
@@ -54,6 +69,7 @@ NSString * const MRGArchitectActionPrefix = @"@";
     
     if ([actionToRegister conformsToProtocol:@protocol(MRGArchitectAction)]) {
         actionToRegisterInstance = [[actionToRegister alloc] initWithLoader:self];
+        
     } else {
         @throw [NSException exceptionWithName:MRGArchitectInvalidActionClassRegistered reason:@"The registered action class doesn't conforms to the MRGArchitectAction protocol" userInfo:[NSDictionary dictionaryWithObject:[actionToRegister description] forKey:@"invalidActionClass"]];
     }
@@ -64,24 +80,23 @@ NSString * const MRGArchitectActionPrefix = @"@";
 - (NSDictionary *)loadEntriesWithClassName:(NSString *)className {
     // Check if we have a architect file that uses the trait collection format
     NSString *path = [self pathForClassName:className suffix:@"-traits"];
-    
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    if ([fileManager fileExistsAtPath:path]) {
+    if ([path length] > 0) {
         return [self loadTraitDictionnaryWithPath:path];
     }
     
+    // Fallback to old format
     NSMutableArray *paths = [[NSMutableArray alloc] init];
     path = [self pathForClassName:className suffix:nil];
     if ([path length] > 0) {
         [paths addObject:path];
     }
     
-    switch ([self userInterfaceIdiom]) {
+    switch (UI_USER_INTERFACE_IDIOM()) {
         default:
             break;
             
-        case UIUserInterfaceIdiomPhone:{
-            CGFloat screenHeight = [self screenHeight];
+        case UIUserInterfaceIdiomPhone: {
+            CGFloat screenHeight = CGRectGetHeight(UIScreen.mainScreen.bounds);
             path = [self pathForClassName:className suffix:@"~iphone"];
             if ([path length] > 0) {
                 [paths addObject:path];
@@ -155,24 +170,19 @@ NSString * const MRGArchitectActionPrefix = @"@";
 }
 
 - (NSString *)pathForClassName:(NSString *)className suffix:(NSString *)suffix {
-    NSString *path = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%@.json", className, suffix ?: @""]];
-
-    return [self fileExistsAtPath:path] ? path : nil;
+    NSString *path = [NSBundle.mainBundle.bundlePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%@.json", className, suffix ?: @""]];
+    
+    if ([self.class.cache objectForKey:path] != nil) {
+        return path;
+    }
+    if ([NSFileManager.defaultManager fileExistsAtPath:path]) {
+        return path;
+    }
+    
+    return nil;
 }
 
-- (BOOL)fileExistsAtPath:(NSString *)path {
-    return [[NSFileManager defaultManager] fileExistsAtPath:path];
-}
-
-- (CGFloat)screenHeight {
-    return CGRectGetHeight([UIScreen mainScreen].bounds);
-}
-
-- (UIUserInterfaceIdiom)userInterfaceIdiom {
-    return UI_USER_INTERFACE_IDIOM();
-}
-
-+ (NSString *)identifierForSizeClass:(UIUserInterfaceSizeClass)class {
+- (NSString *)identifierForSizeClass:(UIUserInterfaceSizeClass)class {
     switch(class) {
         case UIUserInterfaceSizeClassUnspecified:
             return @"*";
@@ -184,19 +194,7 @@ NSString * const MRGArchitectActionPrefix = @"@";
 }
 
 - (NSDictionary *)loadTraitDictionnaryWithPath:(NSString *)path {
-    NSError *error = nil;
-    NSData *data = [NSData dataWithContentsOfFile:path options:NSDataReadingMappedIfSafe error:&error];
-    if (data == nil) {
-        @throw [NSException exceptionWithName:MRGArchitectParseErrorException reason:[error description] userInfo:[error userInfo]];
-    }
-    
-    error = nil;
-    NSMutableDictionary *dictionary = [self dictionaryWithData:data error:&error];
-    if (dictionary == nil) {
-        @throw [NSException exceptionWithName:MRGArchitectParseErrorException reason:[error description] userInfo:[error userInfo]];
-    }
-    
-    self.currentDictionnary = dictionary;
+    self.currentDictionnary = [self loadDictionaryAtPath:path];
     return [self loadEntriesForCurrentSizeClassKeyWithFallbacks];
 }
 
@@ -218,17 +216,17 @@ NSString * const MRGArchitectActionPrefix = @"@";
 - (NSDictionary *)loadEntriesForSizeClassKey:(NSString *)key inDictionnary:(NSDictionary *)dictionary {
     id object = [dictionary objectForKey:key];
     
-    if ([object isKindOfClass:[NSDictionary class]]) {
+    if ([object isKindOfClass:[NSMutableDictionary class]]) {
         [self performActionEntries:object];
         return object;
-    } else {
-        return @{};
     }
+    
+    return @{};
 }
 
 - (NSArray *)sizeClassKeysToLoadInOrder {
-    NSString *horizontalClass = [MRGArchitectJSONLoader identifierForSizeClass:self.traitCollection.horizontalSizeClass];
-    NSString *verticalClass = [MRGArchitectJSONLoader identifierForSizeClass:self.traitCollection.verticalSizeClass];
+    NSString *horizontalClass = [self identifierForSizeClass:self.traitCollection.horizontalSizeClass];
+    NSString *verticalClass = [self identifierForSizeClass:self.traitCollection.verticalSizeClass];
     
     return
     @[
@@ -240,25 +238,23 @@ NSString * const MRGArchitectActionPrefix = @"@";
 }
 
 - (NSDictionary *)loadEntriesWithPaths:(NSArray *)paths {
-    NSMutableDictionary *entries = [[NSMutableDictionary alloc] initWithCapacity:paths.count];
-    for (NSString *path in paths) {
-        NSError *error = nil;
-        NSData *data = [NSData dataWithContentsOfFile:path options:NSDataReadingMappedIfSafe error:&error];
-        if (data == nil) {
-            @throw [NSException exceptionWithName:MRGArchitectParseErrorException reason:[error description] userInfo:[error userInfo]];
-        }
-        
-        error = nil;
-        NSMutableDictionary *dictionary = [self dictionaryWithData:data error:&error];
-        if (dictionary == nil) {
-            @throw [NSException exceptionWithName:MRGArchitectParseErrorException reason:[error description] userInfo:[error userInfo]];
-        }
-        
-        [self performActionEntries:dictionary];
-        [entries addEntriesFromDictionary:dictionary];
+    NSDictionary *entries = [self.class.cache objectForKey:paths];
+    if (entries != nil) {
+        return entries;
     }
     
-    return [NSDictionary dictionaryWithDictionary:entries];
+    NSMutableDictionary *mutableEntries = [[NSMutableDictionary alloc] initWithCapacity:paths.count];
+    for (NSString *path in paths) {
+        NSMutableDictionary *dictionary = [[self.class loadDictionaryAtPath:path] mutableCopy];
+        [self performActionEntries:dictionary];
+        
+        [mutableEntries addEntriesFromDictionary:dictionary];
+    }
+    
+    entries = [mutableEntries copy];
+    
+    [self.class.cache setObject:entries forKey:paths];
+    return entries;
 }
 
 - (void)performActionEntries:(NSMutableDictionary *)entries {
@@ -270,11 +266,11 @@ NSString * const MRGArchitectActionPrefix = @"@";
                 id<MRGArchitectAction> registeredAction = obj;
                 return [registeredAction.actionName isEqualToString:actionName];
             }];
-
+            
             if (indexOfRegisteredAction == NSNotFound) {
                 @throw [NSException exceptionWithName:MRGArchitectUnexpectedActionTypeException reason:@"Unexpected action type encountered (no matching action class registered)" userInfo:[NSDictionary dictionaryWithObject:key forKey:@"invalidActionType"]];
             }
-
+            
             id <MRGArchitectAction> actionToPerform = self.registeredActions[indexOfRegisteredAction];
             [actionToPerform performActionWithValue:obj onEntries:entries];
         }
@@ -298,21 +294,26 @@ NSString * const MRGArchitectActionPrefix = @"@";
     return actionName;
 }
 
-- (NSMutableDictionary *)dictionaryWithData:(NSData *)data error:(NSError **)error {
-    if (!data) {
-        return nil;
+- (NSDictionary *)loadDictionaryAtPath:(NSString *)path {
+    NSDictionary *dictionary = [self.class.cache objectForKey:path];
+    if (dictionary != nil) {
+        return dictionary;
     }
     
-    if (*error) {
-        *error = nil;
+    NSError *error = nil;
+    NSData *data = [NSData dataWithContentsOfFile:path options:NSDataReadingMappedIfSafe error:&error];
+    if (data == nil) {
+        @throw [NSException exceptionWithName:MRGArchitectParseErrorException reason:[error description] userInfo:[error userInfo]];
     }
     
-    NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:error];
+    error = nil;
+    dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
     if (dictionary == nil) {
-        return nil;
+        @throw [NSException exceptionWithName:MRGArchitectParseErrorException reason:[error description] userInfo:[error userInfo]];
     }
     
-    return [dictionary mutableCopy];
+    [self.class.cache setObject:dictionary forKey:path];
+    return dictionary;
 }
 
 @end

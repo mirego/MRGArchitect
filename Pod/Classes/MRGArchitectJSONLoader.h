@@ -32,6 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MRGArchitectJSONLoader : NSObject <MRGArchitectLoader>
 
++ (void)clearCache;
+
 @end
 
 NS_ASSUME_NONNULL_END

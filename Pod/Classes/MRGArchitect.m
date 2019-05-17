@@ -74,7 +74,8 @@ static UIColor *MRGUIColorWithHexString(NSString *hexString) {
 }
 
 + (void)clearCache {
-    [[self architectCache] removeAllObjects];
+    [self.architectCache removeAllObjects];
+    [MRGArchitectJSONLoader clearCache];
 }
 
 + (instancetype)architectForObject:(NSObject *)object {
