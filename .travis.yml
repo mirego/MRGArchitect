@@ -1,16 +1,5 @@
-# references:
-# * http://www.objc.io/issue-6/travis-ci.html
-# * https://github.com/supermarin/xcpretty#usage
-
 osx_image: xcode10.2
 language: objective-c
-# cache: cocoapods
-# podfile: Example/Podfile
-# before_install:
-# - gem install cocoapods # Since Travis is not always on latest version
-# - pod install --project-directory=Example
-install:
-- gem install xcpretty --quiet
-script:
-- set -o pipefail && xcodebuild test -workspace Example/MRGArchitect.xcworkspace -scheme MRGArchitect_Example -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=11.4' ONLY_ACTIVE_ARCH=NO | xcpretty -c
-- pod lib lint --quick
+xcode_project: Example/MRGArchitect.xcworkspace
+xcode_scheme: MRGArchitect_Example
+xcode_destination: platform=iOS Simulator,OS=12.2,name=iPhone Xs
