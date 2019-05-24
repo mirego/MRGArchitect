@@ -48,6 +48,7 @@
     _mock = OCMPartialMock(loader);
     
     OCMStub([_mock fileExistsAtPath:[OCMArg any]]).andReturn(YES);
+    OCMStub([_mock pathForClassName:@"class" suffix:@"-traits"]).andReturn(nil);
 }
 
 - (void)tearDown

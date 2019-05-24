@@ -91,12 +91,12 @@ NSString * const MRGArchitectActionPrefix = @"@";
         [paths addObject:path];
     }
     
-    switch (UI_USER_INTERFACE_IDIOM()) {
+    switch ([self userInterfaceIdiom]) {
         default:
             break;
             
         case UIUserInterfaceIdiomPhone: {
-            CGFloat screenHeight = CGRectGetHeight(UIScreen.mainScreen.bounds);
+            CGFloat screenHeight = [self screenHeight];
             path = [self pathForClassName:className suffix:@"~iphone"];
             if ([path length] > 0) {
                 [paths addObject:path];
@@ -172,10 +172,10 @@ NSString * const MRGArchitectActionPrefix = @"@";
 - (NSString *)pathForClassName:(NSString *)className suffix:(NSString *)suffix {
     NSString *path = [NSBundle.mainBundle.bundlePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%@.json", className, suffix ?: @""]];
     
-    if ([self.class.cache objectForKey:path] != nil) {
+    if ([MRGArchitectJSONLoader.cache objectForKey:path] != nil) {
         return path;
     }
-    if ([NSFileManager.defaultManager fileExistsAtPath:path]) {
+    if ([self fileExistsAtPath:path]) {
         return path;
     }
     
@@ -238,14 +238,14 @@ NSString * const MRGArchitectActionPrefix = @"@";
 }
 
 - (NSDictionary *)loadEntriesWithPaths:(NSArray *)paths {
-    NSDictionary *entries = [self.class.cache objectForKey:paths];
+    NSDictionary *entries = [MRGArchitectJSONLoader.cache objectForKey:paths];
     if (entries != nil) {
         return entries;
     }
     
     NSMutableDictionary *mutableEntries = [[NSMutableDictionary alloc] initWithCapacity:paths.count];
     for (NSString *path in paths) {
-        NSMutableDictionary *dictionary = [[self.class loadDictionaryAtPath:path] mutableCopy];
+        NSMutableDictionary *dictionary = [[self loadDictionaryAtPath:path] mutableCopy];
         [self performActionEntries:dictionary];
         
         [mutableEntries addEntriesFromDictionary:dictionary];
@@ -253,7 +253,7 @@ NSString * const MRGArchitectActionPrefix = @"@";
     
     entries = [mutableEntries copy];
     
-    [self.class.cache setObject:entries forKey:paths];
+    [MRGArchitectJSONLoader.cache setObject:entries forKey:paths];
     return entries;
 }
 
@@ -295,7 +295,7 @@ NSString * const MRGArchitectActionPrefix = @"@";
 }
 
 - (NSDictionary *)loadDictionaryAtPath:(NSString *)path {
-    NSDictionary *dictionary = [self.class.cache objectForKey:path];
+    NSDictionary *dictionary = [MRGArchitectJSONLoader.cache objectForKey:path];
     if (dictionary != nil) {
         return dictionary;
     }
@@ -312,8 +312,22 @@ NSString * const MRGArchitectActionPrefix = @"@";
         @throw [NSException exceptionWithName:MRGArchitectParseErrorException reason:[error description] userInfo:[error userInfo]];
     }
     
-    [self.class.cache setObject:dictionary forKey:path];
+    [MRGArchitectJSONLoader.cache setObject:dictionary forKey:path];
     return dictionary;
+}
+
+#pragma mark - Overridable by mocks for Unit Tests
+
+- (CGFloat)screenHeight {
+    return CGRectGetHeight(UIScreen.mainScreen.bounds);
+}
+
+- (UIUserInterfaceIdiom)userInterfaceIdiom {
+    return UI_USER_INTERFACE_IDIOM();
+}
+
+- (BOOL)fileExistsAtPath:(NSString *)path {
+    return [NSFileManager.defaultManager fileExistsAtPath:path];
 }
 
 @end
