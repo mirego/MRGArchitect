@@ -1,6 +1,6 @@
 {
   "name": "MRGArchitect",
-  "version": "1.1.0",
+  "version": "1.1.7",
   "summary": "Static application configuration via JSON.",
   "homepage": "https://github.com/Mirego/MRGDateFormatter",
   "license": "BSD 3-Clause",
@@ -9,13 +9,13 @@
   },
   "source": {
     "git": "https://github.com/Mirego/MRGArchitect.git",
-    "tag": "1.1.0"
+    "tag": "1.1.7"
   },
   "social_media_url": "https://twitter.com/Mirego",
   "source_files": "Pod/Classes",
   "requires_arc": true,
   "platforms": {
-    "ios": "6.0",
+    "ios": "8.0",
     "tvos": "9.0"
   }
 }

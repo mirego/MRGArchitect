@@ -1,5 +1,5 @@
 /*
- *  Copyright (c) 2005-2015 Erik Doernenburg and contributors
+ *  Copyright (c) 2005-2018 Erik Doernenburg and contributors
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"); you may
  *  not use these files except in compliance with the License. You may obtain
@@ -55,16 +55,26 @@
 - (void)stopMocking
 {
     if(originalMetaClass != nil)
-        [self restoreMetaClass];
+    {
+        [self stopMockingClassMethods];
+    }
+    if(classCreatedForNewMetaClass != nil)
+    {
+        objc_disposeClassPair(classCreatedForNewMetaClass);
+        classCreatedForNewMetaClass = nil;
+    }
     [super stopMocking];
 }
 
-- (void)restoreMetaClass
+
+- (void)stopMockingClassMethods
 {
     OCMSetAssociatedMockForClass(nil, mockedClass);
     object_setClass(mockedClass, originalMetaClass);
     originalMetaClass = nil;
+    /* created meta class will be disposed later because partial mocks create another subclass depending on it */
 }
+
 
 - (void)addStub:(OCMInvocationStub *)aStub
 {
@@ -78,21 +88,25 @@
 
 - (void)prepareClassForClassMethodMocking
 {
-    /* haven't figured out how to work around runtime dependencies on NSString, so exclude it for now */
-    if([[mockedClass class] isSubclassOfClass:[NSString class]])
+    /* the runtime and OCMock depend on string and array; we don't intercept methods on them to avoid endless loops */
+    if([[mockedClass class] isSubclassOfClass:[NSString class]] || [[mockedClass class] isSubclassOfClass:[NSArray class]])
+        return;
+    
+    /* trying to replace class methods on NSManagedObject and subclasses of it doesn't work; see #339 */
+    if([mockedClass isSubclassOfClass:objc_getClass("NSManagedObject")])
         return;
 
     /* if there is another mock for this exact class, stop it */
     id otherMock = OCMGetAssociatedMockForClass(mockedClass, NO);
     if(otherMock != nil)
-        [otherMock restoreMetaClass];
+        [otherMock stopMockingClassMethods];
 
     OCMSetAssociatedMockForClass(self, mockedClass);
 
     /* dynamically create a subclass and use its meta class as the meta class for the mocked class */
-    Class subclass = OCMCreateSubclass(mockedClass, mockedClass);
+    classCreatedForNewMetaClass = OCMCreateSubclass(mockedClass, mockedClass);
     originalMetaClass = object_getClass(mockedClass);
-    id newMetaClass = object_getClass(subclass);
+    id newMetaClass = object_getClass(classCreatedForNewMetaClass);
 
     /* create a dummy initialize method */
     Method myDummyInitializeMethod = class_getInstanceMethod([self mockObjectClass], @selector(initializeForClassObject));
@@ -106,7 +120,6 @@
     Method myForwardMethod = class_getInstanceMethod([self mockObjectClass], @selector(forwardInvocationForClassObject:));
     IMP myForwardIMP = method_getImplementation(myForwardMethod);
     class_addMethod(newMetaClass, @selector(forwardInvocation:), myForwardIMP, method_getTypeEncoding(myForwardMethod));
-
 
     /* adding forwarder for most class methods (instance methods on meta class) to allow for verify after run */
     NSArray *methodBlackList = @[@"class", @"forwardingTargetForSelector:", @"methodSignatureForSelector:", @"forwardInvocation:", @"isBlock",
@@ -132,6 +145,7 @@
     }];
 }
 
+
 - (void)setupForwarderForClassMethodSelector:(SEL)selector
 {
     SEL aliasSelector = OCMAliasForOriginalSelector(selector);
@@ -144,8 +158,8 @@
 
     Class metaClass = object_getClass(mockedClass);
     IMP forwarderIMP = [originalMetaClass instanceMethodForwarderForSelector:selector];
-    class_replaceMethod(metaClass, selector, forwarderIMP, types);
     class_addMethod(metaClass, aliasSelector, originalIMP, types);
+    class_replaceMethod(metaClass, selector, forwarderIMP, types);
 }
 
 
@@ -204,7 +218,14 @@
 
 - (BOOL)conformsToProtocol:(Protocol *)aProtocol
 {
-    return class_conformsToProtocol(mockedClass, aProtocol);
+    Class clazz = mockedClass;
+    while (clazz != nil) {
+        if (class_conformsToProtocol(clazz, aProtocol)) {
+            return YES;
+        }
+        clazz = class_getSuperclass(clazz);
+    }
+    return NO;
 }
 
 @end
@@ -212,11 +233,11 @@
 
 #pragma mark  -
 
-/**
+/*
  taken from:
  `class-dump -f isNS /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.0.sdk/System/Library/Frameworks/CoreFoundation.framework`
  
- @interface NSObject (__NSIsKinds)
+ @ interface NSObject (__NSIsKinds)
  - (_Bool)isNSValue__;
  - (_Bool)isNSTimeZone__;
  - (_Bool)isNSString__;

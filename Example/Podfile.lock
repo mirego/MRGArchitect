@@ -1,17 +1,23 @@
 PODS:
-  - MRGArchitect (1.1.0)
-  - OCMock (3.2)
+  - MRGArchitect (1.1.7)
+  - OCMock (3.4.3)
 
 DEPENDENCIES:
   - MRGArchitect (from `../`)
-  - OCMock (~> 3.1)
+  - OCMock (~> 3.4)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - OCMock
 
 EXTERNAL SOURCES:
   MRGArchitect:
     :path: "../"
 
 SPEC CHECKSUMS:
-  MRGArchitect: b226234d4a7f49c500c92909b97a1305ad0e3d2b
-  OCMock: 28def049ef47f996b515a8eeea958be7ccab2dbb
+  MRGArchitect: ca8ce9b0fd5b80d001dba34f69b5639d0fb54a46
+  OCMock: 43565190abc78977ad44a61c0d20d7f0784d35ab
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 07dd8bdac3fc2280e194b1b3c082011132e5d181
+
+COCOAPODS: 1.7.0
