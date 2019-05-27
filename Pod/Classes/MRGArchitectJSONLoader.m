@@ -216,7 +216,7 @@ NSString * const MRGArchitectActionPrefix = @"@";
 - (NSDictionary *)loadEntriesForSizeClassKey:(NSString *)key inDictionnary:(NSDictionary *)dictionary {
     id object = [dictionary objectForKey:key];
     
-    if ([object isKindOfClass:[NSMutableDictionary class]]) {
+    if ([object isKindOfClass:[NSDictionary class]]) {
         [self performActionEntries:object];
         return object;
     }
