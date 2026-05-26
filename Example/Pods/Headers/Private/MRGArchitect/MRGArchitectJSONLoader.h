@@ -1,1 +1,1 @@
-../../../../../Pod/Classes/MRGArchitectJSONLoader.h
+../../../../../Sources/MRGArchitect/MRGArchitectJSONLoader.h

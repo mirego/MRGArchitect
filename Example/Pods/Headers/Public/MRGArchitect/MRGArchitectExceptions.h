@@ -1,1 +1,1 @@
-../../../../../Pod/Classes/MRGArchitectExceptions.h
+../../../../../Sources/MRGArchitect/MRGArchitectExceptions.h

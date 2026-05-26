@@ -7,7 +7,7 @@ DEPENDENCIES:
   - OCMock (~> 3.4)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - OCMock
 
 EXTERNAL SOURCES:
@@ -15,9 +15,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  MRGArchitect: ca8ce9b0fd5b80d001dba34f69b5639d0fb54a46
+  MRGArchitect: 66122085d4e163fdf473b97f3122096b89a4eed8
   OCMock: 43565190abc78977ad44a61c0d20d7f0784d35ab
 
-PODFILE CHECKSUM: 07dd8bdac3fc2280e194b1b3c082011132e5d181
+PODFILE CHECKSUM: 2e79c1d96614ffa0704f83d59f36cf1aee20b9dd
 
-COCOAPODS: 1.7.0
+COCOAPODS: 1.16.2

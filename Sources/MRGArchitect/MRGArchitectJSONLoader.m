@@ -335,7 +335,7 @@ NSString * const MRGArchitectActionPrefix = @"@";
 }
 
 - (UIUserInterfaceIdiom)userInterfaceIdiom {
-    return UI_USER_INTERFACE_IDIOM();
+    return [UIDevice currentDevice].userInterfaceIdiom;
 }
 
 - (BOOL)fileExistsAtPath:(NSString *)path {
