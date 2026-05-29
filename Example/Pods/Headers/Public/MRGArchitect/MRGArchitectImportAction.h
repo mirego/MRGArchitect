@@ -1,1 +1,1 @@
-../../../../../Pod/Classes/MRGArchitectImportAction.h
+../../../../../Sources/MRGArchitect/MRGArchitectImportAction.h

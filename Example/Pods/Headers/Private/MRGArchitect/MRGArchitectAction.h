@@ -1,1 +1,1 @@
-../../../../../Pod/Classes/MRGArchitectAction.h
+../../../../../Sources/MRGArchitect/MRGArchitectAction.h

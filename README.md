@@ -5,12 +5,33 @@
 [![License](https://img.shields.io/cocoapods/l/MRGArchitect.svg?style=flat)](http://cocoadocs.org/docsets/MRGArchitect)
 [![Platform](https://img.shields.io/cocoapods/p/MRGArchitect.svg?style=flat)](http://cocoadocs.org/docsets/MRGArchitect)
 
+## Installation
+
+### Swift Package Manager
+
+Add `MRGArchitect` as a dependency in your `Package.swift`:
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/Mirego/MRGArchitect.git", from: "1.1.7")
+]
+```
+
+Then add `"MRGArchitect"` to the `dependencies` array of any target that needs it.
+
+Alternatively, in Xcode go to **File → Add Package Dependencies…**, enter the repository URL and choose the version.
+
+### CocoaPods
+
+Add `MRGArchitect` in your `Podfile`:
+
+```ruby
+pod 'MRGArchitect'
+```
+
+Then run `pod install` in your terminal at the root of your project.
+
 ## How to use it
-
-### First things first
-
-- Add `MRGArchitect` in your `Podfile`
-- Run `pod install` in your terminal at the root of your project
 
 ### Simple way
 
