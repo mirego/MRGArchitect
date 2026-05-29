@@ -13,7 +13,7 @@ Add `MRGArchitect` as a dependency in your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/Mirego/MRGArchitect.git", from: "1.1.7")
+    .package(url: "https://github.com/Mirego/MRGArchitect.git", from: "1.2.0")
 ]
 ```
 
